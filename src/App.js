@@ -3,17 +3,27 @@ import "./App.css";
 
 function Todo({ todo, index, completeTodo, removeTodo }) {
   return (
-    <div
+    <section
       className="todo"
       style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
     >
       {todo.text}
 
-      <div>
-        <button onClick={() => completeTodo(index)}>Complete</button>
-        <button onClick={() => removeTodo(index)}>x</button>
-      </div>
-    </div>
+      <section>
+        <button 
+        onClick={() => completeTodo(index)}
+        aria-label='click to mark item as bought'
+
+        >Bought</button>
+
+        <button 
+        onClick={() => removeTodo(index)}
+        aria-label='remove item from list'
+
+        >x</button>
+        
+      </section>
+    </section>
   );
 }
 
