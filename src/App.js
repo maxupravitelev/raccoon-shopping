@@ -11,6 +11,7 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
 
       <section>
         <button 
+        class="completeButton"
         onClick={() => completeTodo(index)}
         aria-label='click to mark item as bought'
 
@@ -52,15 +53,15 @@ function TodoForm({ addTodo }) {
 function App() {
   const [todos, setTodos] = useState([
     {
-      text: "Learn about React",
+      text: "Eggs",
       isCompleted: false
     },
     {
-      text: "Meet friend for lunch",
+      text: "Milk",
       isCompleted: false
     },
     {
-      text: "Build really cool todo app",
+      text: "Brachiosaurus",
       isCompleted: false
     }
   ]);
@@ -95,7 +96,13 @@ function App() {
           />
         ))}
         <TodoForm addTodo={addTodo} />
+        <div id="box-container">
+  <div id="box-1"><p></p></div>
+  <div id="box-2"><p></p></div>
+
+</div>
       </div>
+
     </div>
   );
 }
