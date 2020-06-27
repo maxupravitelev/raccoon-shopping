@@ -11,7 +11,7 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
 
       <section>
         <button 
-        class="completeButton"
+        className="completeButton"
         onClick={() => completeTodo(index)}
         aria-label='click to mark item as bought'
 
@@ -29,12 +29,12 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
 }
 
 function TodoForm({ addTodo }) {
-  const [value, setValue] = useState("");
+  const [value, setValue, amount, setAmount] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
     if (!value) return;
-    addTodo(value);
+    addTodo(value, amount);
     setValue("");
   };
 
@@ -43,17 +43,25 @@ function TodoForm({ addTodo }) {
       <input
         type="text"
         className="input"
-        placeholder="Type in item and press Enter..."
+        placeholder="Type in item and press Enter or Add-Button..."
         size="50"
         value={value}
+        // onChange={e => setValue(e.target.value)}
         onChange={e => setValue(e.target.value)}
+        onClick={e => setValue(e.target.value)}
       />
       <input 
         type="number"
         placeholder="Amount"
         size="3"
+        value={amount}
+        // onChange={e => setValue(e.target.amount)}
       />
+      <button
+        
+      >Add</button>
     </form>
+    
   );
 }
 
@@ -73,8 +81,8 @@ function App() {
     }
   ]);
 
-  const addTodo = text => {
-    const newTodos = [...todos, { text }];
+  const addTodo = (text, amount) => {
+    const newTodos = [...todos, { text, amount }];
     setTodos(newTodos);
   };
 
@@ -103,11 +111,9 @@ function App() {
           />
         ))}
         <TodoForm addTodo={addTodo} />
-        <div id="box-container">
-  <div id="box-1"><p></p></div>
-  <div id="box-2"><p></p></div>
-
-</div>
+        <div className="share-button">
+        <button id="share-button">Share via link</button>
+        </div>
       </div>
 
     </div>

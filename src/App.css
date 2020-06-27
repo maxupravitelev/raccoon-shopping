@@ -54,6 +54,20 @@ button {
 	 opacity: 1;
 }
 
+#share-button {
+    position: relative;
+    top: 10%;
+    display: flex;
+    justify-content: center; 
+}
+
+.share-button {
+    display: flex;
+    justify-content: center; 
+    top: 10%;
+
+}
+
 :focus {
     outline: 3px solid red;   
 }
