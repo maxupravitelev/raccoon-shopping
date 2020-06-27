@@ -43,6 +43,8 @@ function TodoForm({ addTodo }) {
       <input
         type="text"
         className="input"
+        placeholder="Type in Item and press Enter..."
+        size="70"
         value={value}
         onChange={e => setValue(e.target.value)}
       />
