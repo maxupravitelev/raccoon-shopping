@@ -7,6 +7,9 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
       className="todo"
       style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
     >
+      
+      {todo.amount}
+        x
       {todo.text}
 
       <section>
@@ -29,12 +32,18 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
 }
 
 function TodoForm({ addTodo }) {
-  const [value, setValue, amount, setAmount] = useState("");
+  const [value, setValue ] = useState("");
+
 
   const handleSubmit = e => {
+    // const amount = e.target.value.amount;
+    // const newValue = e.target.value;
+    // console.log(amount);
+
+    console.log(value)
     e.preventDefault();
     if (!value) return;
-    addTodo(value, amount);
+    addTodo(value);
     setValue("");
   };
 
@@ -46,7 +55,7 @@ function TodoForm({ addTodo }) {
         placeholder="Type in item and press Enter or Add-Button..."
         size="50"
         value={value}
-        // onChange={e => setValue(e.target.value)}
+        name="item"
         onChange={e => setValue(e.target.value)}
         onClick={e => setValue(e.target.value)}
       />
@@ -54,8 +63,11 @@ function TodoForm({ addTodo }) {
         type="number"
         placeholder="Amount"
         size="3"
-        value={amount}
-        // onChange={e => setValue(e.target.amount)}
+        min="1"
+        name="amount"
+        // value={value.amount}
+        onChange={e => setValue(e.target.value)}
+        // onClick={e => setValue(e.target.value.amount)}
       />
       <button
         
@@ -69,21 +81,25 @@ function App() {
   const [todos, setTodos] = useState([
     {
       text: "Eggs",
+      amount: 3,
       isCompleted: false
     },
     {
       text: "Milk",
+      amount: 1,
       isCompleted: false
     },
     {
       text: "Brachiosaurus",
+      amount: 5,
       isCompleted: false
     }
   ]);
 
-  const addTodo = (text, amount) => {
-    const newTodos = [...todos, { text, amount }];
+  const addTodo = (text) => {
+    const newTodos = [...todos, { text }];
     setTodos(newTodos);
+    console.log(newTodos)
   };
 
   const completeTodo = index => {
