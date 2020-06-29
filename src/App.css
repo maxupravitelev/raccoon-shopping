@@ -1,45 +1,56 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
- /* * {
-	 margin: 0;
-	 padding: 0;
-	 list-style: none;
-	 vertical-align: baseline;
-} */
- div {
-	 position: relative;
-	 z-index: 2;
-}
  body {
 	 background-color: #333;
-	 color: #333;
-	 font-family: 'Raleway', sans-serif;
-	 font-weight: 400;
-	 display: flex;
-	 justify-content: center;
-	 align-items: center;
-	 height: 100vh;
 }
 
  .app {
 	 border-radius: 3px;
 	 position: fixed;
      top: 10%;
-     right: 40%;
-     width: 450px;
-	 padding: 40px 50px;
+     right: 10%;
+     width: 57%;
+	 padding: 1.5em 3em;
 	 display: table;
 	 background-color: #fff;
 }
 
-
-form {
-    display: flex;
+.addItem {
+	/* display: flex;
+	align-items: center; */
+	
+	/* width: 105%; */
     justify-content: space-between;
 }
 
+.todo {
+
+    background: #fff;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+    padding: 3px 10px;
+	font-size: 1em;
+	width: 100%;
+    margin-bottom: 6px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+form {
+	display: flex;
+
+	justify-content: space-between;
+}
+
+
+
+
 input[type=number]{
-    width: 80px;
+    width: 20%;
 } 
+input[type=text]{
+    width: 80%;
+} 
+
 
 button {
 	 height: 100%;
@@ -54,17 +65,19 @@ button {
 	 opacity: 1;
 }
 
-#share-button {
-    position: relative;
-    top: 10%;
-    display: flex;
-    justify-content: center; 
+.share-button {
+	display: flex;
+	justify-content: center; 
 }
 
-.share-button {
-    display: flex;
-    justify-content: center; 
+#share-button {
     top: 10%;
+    display: flex;
+	justify-content: center; 
+	margin: 1.5em;
+	padding: 6px 10px;
+
+	width: 80%;
 
 }
 
@@ -76,34 +89,5 @@ button:hover {
 	 opacity: 0.9;
 }
 
-.todo {
 
-    background: #fff;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
-    padding: 3px 10px;
-    font-size: 20px;
-    margin-bottom: 6px;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
 
-/*
-use em instead of px?
-*/
-
- /* #quote-box .buttons .button#tweet-quote, #quote-box .buttons .button#tumblr-quote {
-	 float: left;
-	 padding: 0px;
-	 padding-top: 8px;
-	 text-align: center;
-	 font-size: 1.2em;
-	 margin-right: 5px;
-	 height: 30px;
-	 width: 40px;
-}
- #quote-box .buttons .button#new-quote {
-	 float: right;
-} */
- 

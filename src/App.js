@@ -7,9 +7,6 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
       className="todo"
       style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
     >
-      
-      {todo.amount}
-        x
       {todo.text}
 
       <section>
@@ -32,18 +29,12 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
 }
 
 function TodoForm({ addTodo }) {
-  const [value, setValue ] = useState("");
-
+  const [value, setValue, amount, setAmount] = useState("");
 
   const handleSubmit = e => {
-    // const amount = e.target.value.amount;
-    // const newValue = e.target.value;
-    // console.log(amount);
-
-    console.log(value)
     e.preventDefault();
     if (!value) return;
-    addTodo(value);
+    addTodo(value, amount);
     setValue("");
   };
 
@@ -53,9 +44,9 @@ function TodoForm({ addTodo }) {
         type="text"
         className="input"
         placeholder="Type in item and press Enter or Add-Button..."
-        size="50"
+        size="10"
         value={value}
-        name="item"
+        // onChange={e => setValue(e.target.value)}
         onChange={e => setValue(e.target.value)}
         onClick={e => setValue(e.target.value)}
       />
@@ -63,11 +54,8 @@ function TodoForm({ addTodo }) {
         type="number"
         placeholder="Amount"
         size="3"
-        min="1"
-        name="amount"
-        // value={value.amount}
-        onChange={e => setValue(e.target.value)}
-        // onClick={e => setValue(e.target.value.amount)}
+        value={amount}
+        // onChange={e => setValue(e.target.amount)}
       />
       <button
         
@@ -81,25 +69,21 @@ function App() {
   const [todos, setTodos] = useState([
     {
       text: "Eggs",
-      amount: 3,
       isCompleted: false
     },
     {
       text: "Milk",
-      amount: 1,
       isCompleted: false
     },
     {
       text: "Brachiosaurus",
-      amount: 5,
       isCompleted: false
     }
   ]);
 
-  const addTodo = (text) => {
-    const newTodos = [...todos, { text }];
+  const addTodo = (text, amount) => {
+    const newTodos = [...todos, { text, amount }];
     setTodos(newTodos);
-    console.log(newTodos)
   };
 
   const completeTodo = index => {
@@ -116,7 +100,6 @@ function App() {
 
   return (
     <div className="app">
-      <div className="todo-list">
         {todos.map((todo, index) => (
           <Todo
             key={index}
@@ -126,11 +109,21 @@ function App() {
             removeTodo={removeTodo}
           />
         ))}
+              <div className="addItem">
+
         <TodoForm addTodo={addTodo} />
+        </div>
+
+        
+        
         <div className="share-button">
         <button id="share-button">Share via link</button>
-        </div>
       </div>
+
+      <div>
+
+      </div>
+
 
     </div>
   );
