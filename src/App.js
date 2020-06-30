@@ -47,7 +47,10 @@ const [value, setValue] = useState({
 
     if (!value) return;
     addTodo(value.text, value.amount);
-    setValue("");
+    setValue({
+        text: "",
+        amount: 0
+    });
   };
 
   const handleValue = (e) => {
