@@ -7,6 +7,8 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
       className="todo"
       style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
     >
+      {todo.amount}
+      x
       {todo.text}
 
       <section>
@@ -29,34 +31,62 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
 }
 
 function TodoForm({ addTodo }) {
-  const [value, setValue, amount, setAmount] = useState("");
+//   const [value, setValue] = useState("");
+//   const [amount, setAmount] = useState(0);
+
+// const [value, setValue] = useState("");
+
+const [value, setValue] = useState({
+    text: "",
+    amount: 0
+});
+
 
   const handleSubmit = e => {
     e.preventDefault();
+
     if (!value) return;
-    addTodo(value, amount);
+    addTodo(value.text, value.amount);
     setValue("");
   };
 
+  const handleValue = (e) => {
+      let name = e.target.name;
+      let newValue = e.target.value;
+    // console.log(name, newValue)
+      setValue({
+          ...value,
+          [name]: newValue
+      })
+      console.log(value)
+  }
+
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        className="input"
-        placeholder="Type in item and press Enter or Add-Button..."
-        size="10"
-        value={value}
-        // onChange={e => setValue(e.target.value)}
-        onChange={e => setValue(e.target.value)}
-        onClick={e => setValue(e.target.value)}
-      />
-      <input 
-        type="number"
-        placeholder="Amount"
-        size="3"
-        value={amount}
-        // onChange={e => setValue(e.target.amount)}
-      />
+    <input
+      type="text"
+      className="input"
+      placeholder="Type in item and press Enter or Add-Button..."
+      size="50"
+      value={value.text}
+      name="text"
+      onChange={handleValue}
+
+    //   onChange={e => setValue(e.target.value)}
+    //   onClick={e => setValue(e.target.value)}
+    />
+    <input 
+      type="number"
+      placeholder="Amount"
+      size="3"
+      min="1"
+      name="amount"
+      value={value.amount}
+      onChange={handleValue}
+
+    //   onChange={e => setValue(e.target.value)}
+      // onClick={e => setValue(e.target.value.amount)}
+    />
       <button
         
       >Add</button>
@@ -69,14 +99,18 @@ function App() {
   const [todos, setTodos] = useState([
     {
       text: "Eggs",
+      amount: 2,
       isCompleted: false
     },
     {
       text: "Milk",
+      amount: 3,
       isCompleted: false
     },
     {
       text: "Brachiosaurus",
+      amount: 5,
+
       isCompleted: false
     }
   ]);
