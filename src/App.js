@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import "./App.css";
 
-function Todo({ todo, index, completeTodo, removeTodo }) {
+function Item({ item, index, completeItem, removeitem }) {
   return (
     <section
-      className="todo"
-      style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
+      className="item"
+      style={{ textDecoration: item.isCompleted ? "line-through" : "" }}
     >
-      {todo.amount}
+      {item.amount}
       x
-      {todo.text}
+      {item.text}
 
       <section>
         <button 
         className="completeButton"
-        onClick={() => completeTodo(index)}
+        onClick={() => completeItem(index)}
         aria-label='click to mark item as bought'
 
         >Bought</button>
 
         <button 
-        onClick={() => removeTodo(index)}
+        onClick={() => removeitem(index)}
         aria-label='remove item from list'
 
         >x</button>
@@ -30,7 +30,7 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
   );
 }
 
-function TodoForm({ addTodo }) {
+function AddItemForm({ addItem }) {
 //   const [value, setValue] = useState("");
 //   const [amount, setAmount] = useState(0);
 
@@ -46,10 +46,11 @@ const [value, setValue] = useState({
     e.preventDefault();
 
     if (!value) return;
-    addTodo(value.text, value.amount);
+    addItem(value.text, value.amount);
     setValue({
         text: "",
-        amount: 0
+        amount: 0,
+        isCompleted: false
     });
   };
 
@@ -99,7 +100,7 @@ const [value, setValue] = useState({
 }
 
 function App() {
-  const [todos, setTodos] = useState([
+  const [items, setItems] = useState([
     {
       text: "Eggs",
       amount: 2,
@@ -118,43 +119,43 @@ function App() {
     }
   ]);
 
-  const addTodo = (text, amount) => {
-    const newTodos = [...todos, { text, amount }];
-    setTodos(newTodos);
+  const addItem = (text, amount) => {
+    const newItems = [...items, { text, amount }];
+    setItems(newItems);
   };
 
-  const completeTodo = index => {
-    const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
-    setTodos(newTodos);
+  const completeItem = index => {
+    const newItems = [...items];
+    newItems[index].isCompleted = true;
+    setItems(newItems);
   };
 
-  const removeTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
+  const removeItem = index => {
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
   };
 
   return (
     <div className="app">
-        {todos.map((todo, index) => (
-          <Todo
+        {items.map((item, index) => (
+          <Item
             key={index}
             index={index}
-            todo={todo}
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
+            item={item}
+            completeItem={completeItem}
+            removeItem={removeItem}
           />
         ))}
               <div className="addItem">
 
-        <TodoForm addTodo={addTodo} />
+        <AddItemForm addItem={addItem} />
         </div>
 
         
         
         <div className="share-button">
-        <button id="share-button">Share via link</button>
+        <button id="share-button" disabled>Share via link</button>
       </div>
 
       <div>
@@ -167,5 +168,3 @@ function App() {
 }
 
 export default App;
-
-// built upon: https://scotch.io/tutorials/build-a-react-to-do-app-with-react-hooks-no-class-components?utm_source=dormosheio&utm_campaign=dormosheio
