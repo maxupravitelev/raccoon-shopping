@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function Item({ item, index, completeItem, removeitem }) {
+function Item({ item, index, completeItem, removeItem }) {
     return (
       <section
         className="item"
@@ -20,7 +20,7 @@ function Item({ item, index, completeItem, removeitem }) {
           >Bought</button>
   
           <button 
-          onClick={() => removeitem(index)}
+          onClick={() => removeItem(index)}
           aria-label='remove item from list'
   
           >x</button>
