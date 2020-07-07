@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios'
+
 
 function AddItemForm({ addItem }) {
     //   const [value, setValue] = useState("");
@@ -16,7 +18,25 @@ function AddItemForm({ addItem }) {
         e.preventDefault();
     
         if (!value) return;
-        addItem(value.text, value.amount);
+        
+        let itemObject = {
+            text: value.text, 
+            amount: value.amount,
+            isCompleted: false
+        }
+
+        // addItem(value.text, value.amount);
+        
+        // addItem(itemObject);        
+        
+        
+        
+        axios
+            .post('https://shopping-assistant-json-server.herokuapp.com/items', itemObject)
+            .then(response => {
+                addItem(value.text, value.amount);
+            })
+        
         setValue({
             text: "",
             amount: 0,
@@ -24,16 +44,34 @@ function AddItemForm({ addItem }) {
         });
       };
     
+
       const handleValue = (e) => {
-          let name = e.target.name;
-          let newValue = e.target.value;
-        // console.log(name, newValue)
-          setValue({
-              ...value,
-              [name]: newValue
-          })
-          console.log(value)
-      }
+        let name = e.target.name;
+        let newValue = e.target.value;
+      // console.log(name, newValue)
+        setValue({
+            ...value,
+            [name]: newValue
+        })
+        console.log(value)
+    }
+
+
+
+    //   const handleValue = (e) => {
+    //       let name = e.target.name;
+    //       let newValue = e.target.value;
+    //     // console.log(name, newValue)
+        
+    //     const itemObject = {
+    //         ...value,
+    //         [name]: newValue           
+    //     }
+
+
+        
+
+    //   }
     
       return (
         <form onSubmit={handleSubmit}>

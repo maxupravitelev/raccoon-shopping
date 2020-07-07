@@ -5,20 +5,17 @@ import AddItemForm from './components/AddItemForm';
 import axios from 'axios';
 
 
-
-
-
-function App() {
-  const [items, setItems] = useState([]);
+const App = () => {
+  const [items, setItems] = useState([{text: "...loading..."}]);
 
   useEffect(() => {
     // console.log('effect')
     axios
-      .get('https://shopping-assistant-json-server.herokuapp.com/db')
+      .get('https://shopping-assistant-json-server.herokuapp.com/items/')
       .then(response => {
         // console.log('promise fulfilled')
-        console.log(response.data.user)
-        setItems(response.data.user)
+        console.log(response.data)
+        setItems(response.data)
       })
   }, [])
 
