@@ -1,31 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Item from './components/Item';
 import AddItemForm from './components/AddItemForm';
+import axios from 'axios';
 
 
 
 
 
 function App() {
-  const [items, setItems] = useState([
-    {
-      text: "Eggs",
-      amount: 2,
-      isCompleted: false
-    },
-    {
-      text: "Milk",
-      amount: 3,
-      isCompleted: false
-    },
-    {
-      text: "Brachiosaurus",
-      amount: 5,
+  const [items, setItems] = useState([]);
 
-      isCompleted: false
-    }
-  ]);
+  useEffect(() => {
+    // console.log('effect')
+    axios
+      .get('https://shopping-assistant-json-server.herokuapp.com/db')
+      .then(response => {
+        // console.log('promise fulfilled')
+        console.log(response.data.user)
+        setItems(response.data.user)
+      })
+  }, [])
+
 
   const addItem = (text, amount) => {
     const newItems = [...items, { text, amount }];
