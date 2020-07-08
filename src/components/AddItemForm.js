@@ -25,17 +25,13 @@ function AddItemForm({ addItem }) {
             isCompleted: false
         }
 
-        // addItem(value.text, value.amount);
+        addItem(value.text, value.amount);
         
         // addItem(itemObject);        
         
         
         
-        axios
-            .post('https://shopping-assistant-json-server.herokuapp.com/items', itemObject)
-            .then(response => {
-                addItem(value.text, value.amount);
-            })
+        
         
         setValue({
             text: "",
