@@ -10,18 +10,18 @@ const App = () => {
   useEffect(() => {
     // console.log('effect')
     axios
-      .get("https://shopping-assistant-json-server.herokuapp.com/items/")
+      .get("https://shopping-assistant-json-server.herokuapp.com/lists/1/")
       .then((response) => {
         // console.log('promise fulfilled')
-        // console.log(response.data);
-        setItems(response.data);
+        console.log(response.data);
+        setItems(response.data.items);
       });
   }, []);
 
   const addItem = (text, amount) => {
     const newItems = [...items, { text, amount }];
 
-    axios.post("https://shopping-assistant-json-server.herokuapp.com/items", {
+    axios.post("https://shopping-assistant-json-server.herokuapp.com/lists/1/items/", {
       text,
       amount,
     });
@@ -57,32 +57,34 @@ const App = () => {
       </div>
 
       <ShowListID />
-      <div className="share-button">
-        <button id="share-button" disabled>
-          Share via link
-        </button>
-      </div>
-
-      <div></div>
     </div>
   );
 };
-
 
 // work around until react routes are implemented
 const ShowListID = () => {
   const queryString = window.location.search;
 
   console.log(queryString);
-    
-    //check for the colon
-    if (queryString.indexOf(':') !== -1) {
+
+  //check for the colon
+  if (queryString.indexOf(":") !== -1) {
     //split and get
-    var listId = queryString.split(':')[1];
-    }
-    return (
-  <div>{listId}</div>
-  )
+    var listId = queryString.split(":")[1];
+  }
+  return (
+    <div>
+      <br />
+      
+
+      <div className="share-button">
+        <button id="share-button" disabled>
+          Share via link
+        </button>
+      </div>
+      <div> List-ID: {listId}</div>
+    </div>
+  );
 };
 
 export default App;
