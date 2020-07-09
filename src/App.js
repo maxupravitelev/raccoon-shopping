@@ -7,23 +7,36 @@ import axios from "axios";
 const App = () => {
   const [items, setItems] = useState([{ text: "...loading..." }]);
 
+  // work around until react routes are implemented
+
+  let listId = null;
+
+  const queryString = window.location.search;
+  if (queryString != "") {
+    if (queryString.indexOf(":") !== -1) {
+      listId = queryString.split(":")[1];
+    }
+  } else {
+    listId = 1;
+  }
+
   useEffect(() => {
     // console.log('effect')
-    axios
-      .get("https://shopping-assistant-json-server.herokuapp.com/lists/1/")
-      .then((response) => {
-        // console.log('promise fulfilled')
-        console.log(response.data);
-        setItems(response.data.items);
-      });
+    axios.get("http://localhost:3001/lists/" + listId).then((response) => {
+      console.log("promise fulfilled");
+      console.log(response.data);
+      setItems(response.data.newItems);
+    });
   }, []);
 
   const addItem = (text, amount) => {
     const newItems = [...items, { text, amount }];
 
-    axios.post("https://shopping-assistant-json-server.herokuapp.com/lists/1/items/", {
-      text,
-      amount,
+    console.log(newItems);
+    console.log({ text, amount });
+
+    axios.put("http://localhost:3001/lists/" + listId, {
+      newItems,
     });
 
     setItems(newItems);
@@ -41,6 +54,14 @@ const App = () => {
     setItems(newItems);
   };
 
+  const handleNewList = () => {
+    let currentArrLengthOnServer = null;
+    axios.get("http://localhost:3001/lists/").then((response) => {
+        console.log(response.data.length);
+      });
+    
+  };
+
   return (
     <div className="app">
       {items.map((item, index) => (
@@ -56,33 +77,30 @@ const App = () => {
         <AddItemForm addItem={addItem} />
       </div>
 
-      <ShowListID />
+      <ShowListID listId={listId} />
+
+      <button onClick={handleNewList}>New List</button>
     </div>
   );
 };
 
-// work around until react routes are implemented
-const ShowListID = () => {
-  const queryString = window.location.search;
-
-  console.log(queryString);
-
-  //check for the colon
-  if (queryString.indexOf(":") !== -1) {
-    //split and get
-    var listId = queryString.split(":")[1];
-  }
+const ShowListID = ({ listId }) => {
   return (
     <div>
       <br />
-      
+      <div> List-ID: {listId}</div>
+      <div>
+        link to list:
+        <a href={"http://localhost:3000/?listId" + listId}>
+          {"http://localhost:3000/?listId" + listId}
+        </a>
+      </div>
 
       <div className="share-button">
         <button id="share-button" disabled>
           Share via link
         </button>
       </div>
-      <div> List-ID: {listId}</div>
     </div>
   );
 };

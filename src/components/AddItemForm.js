@@ -49,7 +49,7 @@ function AddItemForm({ addItem }) {
             ...value,
             [name]: newValue
         })
-        console.log(value)
+        // console.log(value)
     }
 
 
