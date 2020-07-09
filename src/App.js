@@ -6,7 +6,7 @@ import axios from "axios";
 
 const App = () => {
   const [items, setItems] = useState([{ text: "...loading..." }]);
-  
+
   // work around until react routes are implemented
 
   let listId = null;
@@ -22,7 +22,7 @@ const App = () => {
 
   useEffect(() => {
     // console.log('effect')
-    axios.get("http://localhost:3001/lists/" + listId).then((response) => {
+    axios.get("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId).then((response) => {
       console.log("promise fulfilled");
       console.log(response.data);
       setItems(response.data.newItems);
@@ -30,17 +30,12 @@ const App = () => {
   }, []);
 
   const addItem = (text, amount) => {
-    const newItems = 
-        [...items, 
-        { text, 
-            amount,
-            isCompleted: false },
-        ];
+    const newItems = [...items, { text, amount, isCompleted: false }];
 
     console.log(newItems);
     console.log({ text, amount });
 
-    axios.put("http://localhost:3001/lists/" + listId, {
+    axios.put("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId, {
       newItems,
     });
 
@@ -51,9 +46,9 @@ const App = () => {
     const newItems = [...items];
     newItems[index].isCompleted = true;
 
-    axios.put("http://localhost:3001/lists/" + listId, {
-        newItems,
-      });
+    axios.put("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId, {
+      newItems,
+    });
 
     setItems(newItems);
   };
@@ -62,33 +57,36 @@ const App = () => {
     const newItems = [...items];
     newItems.splice(index, 1);
 
-
-    axios.put("http://localhost:3001/lists/" + listId, {
-        newItems,
-      });
+    axios.put("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId, {
+      newItems,
+    });
 
     setItems(newItems);
   };
 
   const handleNewList = () => {
     let currentArrLengthOnServer = null;
-    axios.get("http://localhost:3001/lists/").then((response) => {
+    axios.get("https://shopping-assistant-json-server.herokuapp.com/lists/").then((response) => {
       currentArrLengthOnServer = response.data.length;
-      console.log(currentArrLengthOnServer);
+    //   console.log(currentArrLengthOnServer);
     });
     listId = currentArrLengthOnServer + 1;
-    let newItems = {
-      listId: listId,
-      newItems: [ {} ],
-    };
+    console.log(listId)
+ 
+    let newItems = [
+      {
+        text: "",
+        amount: 0,
+        isCompleted: false,
+      },
+    ];
 
-    axios.post("http://localhost:3001/lists/", {
-        newItems,
+    axios.post("https://shopping-assistant-json-server.herokuapp.com/lists/", {
+      listId,
+      newItems,
     });
 
-    setItems([{},{}]);
-
-
+    setItems([{}, {}]);
   };
 
   return (
@@ -106,9 +104,9 @@ const App = () => {
         <AddItemForm addItem={addItem} />
       </div>
 
-      
-
-      <button id="share-button" onClick={handleNewList}>New List</button>
+      <button id="share-button" onClick={handleNewList}>
+        New List
+      </button>
       <ShowListID listId={listId} />
     </div>
   );
@@ -117,17 +115,15 @@ const App = () => {
 const ShowListID = ({ listId }) => {
   return (
     <div>
-      
       <div className="share-button">
         <button id="share-button" disabled>
           Share via link
         </button>
         <div> List-ID: {listId}</div>
         link to list:
-        <a href={"http://localhost:3000/?listId:" + listId}>
-          {"http://localhost:3000/?listId:" + listId}
+        <a href={"http://shopping-assistent.herokuapp.com/?listId:" + listId}>
+          {"http://shopping-assistent.herokuapp.com/listId:" + listId}
         </a>
-     
       </div>
     </div>
   );
