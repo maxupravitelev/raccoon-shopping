@@ -6,7 +6,7 @@ import axios from "axios";
 
 const App = () => {
   const [items, setItems] = useState([{ text: "...loading..." }]);
-
+  
   // work around until react routes are implemented
 
   let listId = null;
@@ -57,9 +57,22 @@ const App = () => {
   const handleNewList = () => {
     let currentArrLengthOnServer = null;
     axios.get("http://localhost:3001/lists/").then((response) => {
-        console.log(response.data.length);
-      });
-    
+      currentArrLengthOnServer = response.data.length;
+      console.log(currentArrLengthOnServer);
+    });
+    listId = currentArrLengthOnServer + 1;
+    let newItems = {
+      listId: listId,
+      newItems: [ {} ],
+    };
+
+    axios.post("http://localhost:3001/lists/", {
+        newItems,
+    });
+
+    setItems([{},{}]);
+
+
   };
 
   return (
@@ -77,9 +90,10 @@ const App = () => {
         <AddItemForm addItem={addItem} />
       </div>
 
-      <ShowListID listId={listId} />
+      
 
-      <button onClick={handleNewList}>New List</button>
+      <button id="share-button" onClick={handleNewList}>New List</button>
+      <ShowListID listId={listId} />
     </div>
   );
 };
@@ -87,19 +101,17 @@ const App = () => {
 const ShowListID = ({ listId }) => {
   return (
     <div>
-      <br />
-      <div> List-ID: {listId}</div>
-      <div>
-        link to list:
-        <a href={"http://localhost:3000/?listId" + listId}>
-          {"http://localhost:3000/?listId" + listId}
-        </a>
-      </div>
-
+      
       <div className="share-button">
         <button id="share-button" disabled>
           Share via link
         </button>
+        <div> List-ID: {listId}</div>
+        link to list:
+        <a href={"http://localhost:3000/?listId" + listId}>
+          {"http://localhost:3000/?listId" + listId}
+        </a>
+     
       </div>
     </div>
   );

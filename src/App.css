@@ -66,10 +66,10 @@ button {
 }
 
 
-.share-button {
+/* .share-button {
 	display: flex;
 	justify-content: center; 
-}
+} */
 
 #share-button {
     top: 10%;
