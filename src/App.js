@@ -30,7 +30,12 @@ const App = () => {
   }, []);
 
   const addItem = (text, amount) => {
-    const newItems = [...items, { text, amount }];
+    const newItems = 
+        [...items, 
+        { text, 
+            amount,
+            isCompleted: false },
+        ];
 
     console.log(newItems);
     console.log({ text, amount });
@@ -45,12 +50,23 @@ const App = () => {
   const completeItem = (index) => {
     const newItems = [...items];
     newItems[index].isCompleted = true;
+
+    axios.put("http://localhost:3001/lists/" + listId, {
+        newItems,
+      });
+
     setItems(newItems);
   };
 
   const removeItem = (index) => {
     const newItems = [...items];
     newItems.splice(index, 1);
+
+
+    axios.put("http://localhost:3001/lists/" + listId, {
+        newItems,
+      });
+
     setItems(newItems);
   };
 
@@ -108,8 +124,8 @@ const ShowListID = ({ listId }) => {
         </button>
         <div> List-ID: {listId}</div>
         link to list:
-        <a href={"http://localhost:3000/?listId" + listId}>
-          {"http://localhost:3000/?listId" + listId}
+        <a href={"http://localhost:3000/?listId:" + listId}>
+          {"http://localhost:3000/?listId:" + listId}
         </a>
      
       </div>
