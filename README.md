@@ -1,7 +1,11 @@
 
 
-## work in progress
+## info
 
-This repository is part of a project that aims to create an app for allies who provide assistance for people with reduced access to shopping. 
+This repository is an early stage of a web app for allies who provide assistance for people with reduced access to shopping. 
 
-Current version is avaiable at: http://shopping-assistent.herokuapp.com/
+## current version
+ 
+http://shopping-assistent.herokuapp.com/
+
+Currently built with React JS & JSON Server
