@@ -6,9 +6,8 @@ import axios from "axios";
 
 const App = () => {
   const [items, setItems] = useState([{ text: "...loading..." }]);
-
+  
   // work around until react routes are implemented
-
   let listId = null;
 
   const queryString = window.location.search;
@@ -21,7 +20,6 @@ const App = () => {
   }
 
   useEffect(() => {
-    // console.log('effect')
     axios.get("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId).then((response) => {
       console.log("promise fulfilled");
       console.log(response.data);
@@ -104,7 +102,7 @@ const App = () => {
         <AddItemForm addItem={addItem} />
       </div>
 
-      <button id="share-button" onClick={handleNewList}>
+      <button id="share-button" onClick={handleNewList} disabled={true}>
         New List
       </button>
       <ShowListID listId={listId} />
@@ -116,7 +114,7 @@ const ShowListID = ({ listId }) => {
   return (
     <div>
       <div className="share-button">
-        <button id="share-button" disabled>
+        <button id="share-button" disabled={true}>
           Share via link
         </button>
         <div> List-ID: {listId}</div>

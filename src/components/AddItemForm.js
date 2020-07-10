@@ -35,12 +35,16 @@ function AddItemForm({ addItem }) {
     });
   };
 
+  let labelText = 'Type in item and press Enter or Add-Button...'
+
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
         className="input"
-        placeholder="Type in item and press Enter or Add-Button..."
+        aria-label={labelText}
+        aria-required="true"
+        placeholder={labelText}
         size="50"
         value={value.text}
         name="text"
@@ -48,9 +52,10 @@ function AddItemForm({ addItem }) {
       />
       <input
         type="number"
+        aria-label="Add Amount"
+        aria-required="true"
         placeholder="Amount"
         size="3"
-        min="1"
         name="amount"
         value={value.amount}
         onChange={handleValue}
