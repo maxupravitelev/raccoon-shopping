@@ -60,7 +60,9 @@ function AddItemForm({ addItem }) {
         value={value.amount}
         onChange={handleValue}
       />
-      <button>Add</button>
+      <button
+      aria-label="Add"
+      >Add</button>
     </form>
   );
 }

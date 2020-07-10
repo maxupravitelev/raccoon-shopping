@@ -102,7 +102,11 @@ const App = () => {
         <AddItemForm addItem={addItem} />
       </div>
 
-      <button id="share-button" onClick={handleNewList} disabled={true}>
+      <button id="share-button" 
+      onClick={handleNewList} 
+      disabled={true}
+      aria-label="New List"
+      >
         New List
       </button>
       <ShowListID listId={listId} />
@@ -114,7 +118,11 @@ const ShowListID = ({ listId }) => {
   return (
     <div>
       <div className="share-button">
-        <button id="share-button" disabled={true}>
+        <button 
+        id="share-button" 
+        disabled={true}
+        aria-label="Share via Link"
+        >
           Share via link
         </button>
         <div> List-ID: {listId}</div>
