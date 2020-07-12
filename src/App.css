@@ -4,13 +4,15 @@
 
  .app {
 	 border-radius: 3px;
-	 position: fixed;
+	 /* position: fixed; */
      top: 10%;
      right: 10%;
-     width: 57%;
-	 padding: 1.5em 3em;
-	 display: table;
+     width: 72%;
+	 padding: 3em;
+	 /* display: table; */
 	 background-color: #fff;
+	 max-width: 25em;
+	 margin: auto;
 }
 
 .addItem {
