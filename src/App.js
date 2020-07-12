@@ -45,7 +45,7 @@ const App = () => {
 
   const completeItem = (index) => {
     const newItems = [...items];
-    newItems[index].isCompleted = true;
+    newItems[index].isCompleted = !(newItems[index].isCompleted);
 
     axios.put("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId, {
       newItems,
