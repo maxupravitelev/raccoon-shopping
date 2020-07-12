@@ -3,15 +3,10 @@
 }
 
  .app {
-	 border-radius: 3px;
-	 /* position: fixed; */
-     top: 10%;
-     right: 10%;
-     width: 72%;
+	 border-radius: 40px;
 	 padding: 3em;
-	 /* display: table; */
 	 background-color: #fff;
-	 max-width: 25em;
+	 max-width: 20em;
 	 margin: auto;
 }
 

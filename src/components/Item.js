@@ -17,7 +17,7 @@ function Item({ item, index, completeItem, removeItem }) {
           onClick={() => completeItem(index)}
           aria-label='click to mark item as bought'
   
-          >Bought</button>
+          >✓</button>
   
           <button 
           onClick={() => removeItem(index)}
