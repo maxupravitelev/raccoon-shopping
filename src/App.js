@@ -92,6 +92,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <br />
       {items.map((item, index) => (
         <Item
           key={index}
@@ -101,17 +102,36 @@ const App = () => {
           removeItem={removeItem}
         />
       ))}
+      <br />
+      <br />
+      <br />
       <div className="addItem">
         <AddItemForm addItem={addItem} />
       </div>
+      <br />
+      <br />
 
-      <button id="share-button" 
+      <div id="share-button" >
+      <button 
       onClick={handleNewList} 
       disabled={true}
       aria-label="New List"
       >
         New List
       </button>
+
+      <button 
+        
+        disabled={true}
+        aria-label="Share via Link"
+        >
+          Share List
+        </button>
+        
+        </div>
+        <br />
+        <br />
+
       <ShowListID listId={listId} />
 
     </div>
@@ -121,18 +141,12 @@ const App = () => {
 const ShowListID = ({ listId }) => {
   return (
     <div>
-      <div className="share-button">
-        <button 
-        id="share-button" 
-        disabled={true}
-        aria-label="Share via Link"
-        >
-          Share via link
-        </button>
-        <div> List-ID: {listId}</div>
-        link to list:
+      <div className="share-button" style={{textAlign: "center"}}>
+
+        {/* <div> List-ID: {listId}</div> */}
+        
         <a href={"http://shopping-assistent.herokuapp.com/?listId:" + listId}>
-          {"http://shopping-assistent.herokuapp.com/listId:" + listId}
+          {"#" + listId}
         </a>
       </div>
     </div>

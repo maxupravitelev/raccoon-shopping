@@ -38,6 +38,7 @@ function AddItemForm({ addItem }) {
   let labelText = 'Type in item and press Enter or Add-Button...'
 
   return (
+    
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -59,10 +60,13 @@ function AddItemForm({ addItem }) {
         name="amount"
         value={value.amount}
         onChange={handleValue}
+        style={{textAlign:"center"}}
       />
       <button
+          id="addButton" style={{width: '100%'}}
+
       aria-label="Add"
-      >Add</button>
+      >+</button>
     </form>
   );
 }

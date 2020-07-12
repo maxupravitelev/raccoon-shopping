@@ -13,13 +13,14 @@ function Item({ item, index, completeItem, removeItem }) {
   
         <section>
           <button 
-          className="completeButton"
+          className="editButtons"
           onClick={() => completeItem(index)}
           aria-label='click to mark item as bought'
   
           >✓</button>
   
           <button 
+          className="editButtons"
           onClick={() => removeItem(index)}
           aria-label='remove item from list'
   
