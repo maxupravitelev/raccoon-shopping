@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import "./App.css";
 import Item from "./components/Item";
 import AddItemForm from "./components/AddItemForm";
@@ -9,6 +9,7 @@ import logo from './img/logo.png';
 
 const App = () => {
   const [items, setItems] = useState([{ text: "...loading..." }]);
+  const [newListId, setNewListId] = useState(0);
   
   // work around until react routes are implemented
   let listId = null;
@@ -24,8 +25,8 @@ const App = () => {
 
   useEffect(() => {
     axios.get("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId).then((response) => {
-      console.log("promise fulfilled");
-      console.log(response.data);
+    //   console.log("promise fulfilled");
+    //   console.log(response.data);
       setItems(response.data.newItems);
     });
   }, []);
@@ -64,6 +65,8 @@ const App = () => {
 
     setItems(newItems);
   };
+  
+  
 
   const handleNewList = () => {
     let currentArrLengthOnServer = null;
@@ -71,9 +74,13 @@ const App = () => {
       currentArrLengthOnServer = response.data.length;
     //   console.log(currentArrLengthOnServer);
     });
+    
+    setTimeout(() => {
     listId = currentArrLengthOnServer + 1;
     console.log(listId)
- 
+    setNewListId(listId)
+    console.log(newListId);
+}, 2000)
     let newItems = [
       {
         text: "",
@@ -114,11 +121,13 @@ const App = () => {
       <div id="share-button" >
       <button 
       onClick={handleNewList} 
-      disabled={true}
+    //   disabled={true}
       aria-label="New List"
       >
         New List
       </button>
+
+
 
       <button 
         
@@ -131,6 +140,7 @@ const App = () => {
         </div>
         <br />
         <br />
+      <ShowNewListID newListId={newListId}/>
 
       <ShowListID listId={listId} />
 
@@ -138,7 +148,7 @@ const App = () => {
   );
 };
 
-const ShowListID = ({ listId }) => {
+const ShowListID = ({ listId, newListId }) => {
   return (
     <div>
       <div className="share-button" style={{textAlign: "center"}}>
@@ -152,5 +162,24 @@ const ShowListID = ({ listId }) => {
     </div>
   );
 };
+
+const ShowNewListID = ({ newListId }) => {
+    if (newListId == 0) {
+        return (
+            <div></div>
+        )
+    } else {
+        return (
+            <div>
+        <a href={"http://shopping-assistent.herokuapp.com/?listId:" + newListId}>
+            Open New List 
+            </a>
+            </div>
+        )
+    }
+    
+
+}
+
 
 export default App;
