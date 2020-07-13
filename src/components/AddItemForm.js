@@ -63,7 +63,7 @@ function AddItemForm({ addItem }) {
         style={{textAlign:"center"}}
       />
       <button
-          id="addButton" style={{width: '100%'}}
+          id="addButton" style={{width: '60%', display: 'block', margin: "2em auto"}}
 
       aria-label="Add"
       >+</button>

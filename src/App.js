@@ -4,7 +4,7 @@ import "./App.css";
 import Item from "./components/Item";
 import AddItemForm from "./components/AddItemForm";
 import axios from "axios";
-// import Button from '@material-ui/core/Button';
+import logo from './img/logo.png';
 
 
 const App = () => {
@@ -92,6 +92,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <img src={logo} style={{maxWidth: 30, display: 'block', margin: '0 auto', padding: "10px 0px 30px 0px"}}/>
       <br />
       {items.map((item, index) => (
         <Item
@@ -108,8 +109,7 @@ const App = () => {
       <div className="addItem">
         <AddItemForm addItem={addItem} />
       </div>
-      <br />
-      <br />
+
 
       <div id="share-button" >
       <button 
