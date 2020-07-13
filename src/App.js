@@ -94,7 +94,7 @@ const App = () => {
       newItems,
     });
 
-    setItems([{}, {}]);
+    // setItems([{}, {}]);
   };
 
   return (
@@ -124,7 +124,7 @@ const App = () => {
     //   disabled={true}
       aria-label="New List"
       >
-        New List
+        Create List
       </button>
 
 
@@ -170,10 +170,12 @@ const ShowNewListID = ({ newListId }) => {
         )
     } else {
         return (
-            <div>
+            <div style={{display: 'block', margin: "0 auto", textAlign: "center"}}>
         <a href={"http://shopping-assistent.herokuapp.com/?listId:" + newListId}>
             Open New List 
             </a>
+            <br />
+            <br />
             </div>
         )
     }
