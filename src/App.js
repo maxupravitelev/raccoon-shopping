@@ -4,13 +4,12 @@ import "./App.css";
 import Item from "./components/Item";
 import AddItemForm from "./components/AddItemForm";
 import axios from "axios";
-import logo from './img/logo.png';
-
+import logo from "./img/logo.png";
 
 const App = () => {
   const [items, setItems] = useState([{ text: "...loading..." }]);
   const [newListId, setNewListId] = useState(0);
-  
+
   // work around until react routes are implemented
   let listId = null;
 
@@ -24,11 +23,15 @@ const App = () => {
   }
 
   useEffect(() => {
-    axios.get("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId).then((response) => {
-    //   console.log("promise fulfilled");
-    //   console.log(response.data);
-      setItems(response.data.newItems);
-    });
+    axios
+      .get(
+        "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId
+      )
+      .then((response) => {
+        //   console.log("promise fulfilled");
+        //   console.log(response.data);
+        setItems(response.data.newItems);
+      });
   }, []);
 
   const addItem = (text, amount) => {
@@ -37,20 +40,26 @@ const App = () => {
     console.log(newItems);
     console.log({ text, amount });
 
-    axios.put("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId, {
-      newItems,
-    });
+    axios.put(
+      "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId,
+      {
+        newItems,
+      }
+    );
 
     setItems(newItems);
   };
 
   const completeItem = (index) => {
     const newItems = [...items];
-    newItems[index].isCompleted = !(newItems[index].isCompleted);
+    newItems[index].isCompleted = !newItems[index].isCompleted;
 
-    axios.put("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId, {
-      newItems,
-    });
+    axios.put(
+      "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId,
+      {
+        newItems,
+      }
+    );
 
     setItems(newItems);
   };
@@ -59,28 +68,31 @@ const App = () => {
     const newItems = [...items];
     newItems.splice(index, 1);
 
-    axios.put("https://shopping-assistant-json-server.herokuapp.com/lists/" + listId, {
-      newItems,
-    });
+    axios.put(
+      "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId,
+      {
+        newItems,
+      }
+    );
 
     setItems(newItems);
   };
-  
-  
 
   const handleNewList = () => {
     let currentArrLengthOnServer = null;
-    axios.get("https://shopping-assistant-json-server.herokuapp.com/lists/").then((response) => {
-      currentArrLengthOnServer = response.data.length;
-    //   console.log(currentArrLengthOnServer);
-    });
-    
+    axios
+      .get("https://shopping-assistant-json-server.herokuapp.com/lists/")
+      .then((response) => {
+        currentArrLengthOnServer = response.data.length;
+        //   console.log(currentArrLengthOnServer);
+      });
+
     setTimeout(() => {
-    listId = currentArrLengthOnServer + 1;
-    console.log(listId)
-    setNewListId(listId)
-    console.log(newListId);
-}, 2000)
+      listId = currentArrLengthOnServer + 1;
+      console.log(listId);
+      setNewListId(listId);
+      console.log(newListId);
+    }, 2000);
     let newItems = [
       {
         text: "",
@@ -99,7 +111,15 @@ const App = () => {
 
   return (
     <div className="app">
-      <img src={logo} style={{maxWidth: 30, display: 'block', margin: '0 auto', padding: "10px 0px 30px 0px"}}/>
+      <img
+        src={logo}
+        style={{
+          maxWidth: 30,
+          display: "block",
+          margin: "0 auto",
+          padding: "10px 0px 30px 0px",
+        }}
+      />
       <br />
       {items.map((item, index) => (
         <Item
@@ -117,44 +137,63 @@ const App = () => {
         <AddItemForm addItem={addItem} />
       </div>
 
-
-      <div id="share-button" >
-      <button 
-      onClick={handleNewList} 
-    //   disabled={true}
-      aria-label="New List"
-      >
-        Create List
-      </button>
-
-
-
-      <button 
-        
-        disabled={true}
-        aria-label="Share via Link"
+      <div id="share-button">
+        <button
+          onClick={handleNewList}
+          //   disabled={true}
+          aria-label="New List"
         >
-          Share List
+          Create List
         </button>
-        
-        </div>
-        <br />
-        <br />
-      <ShowNewListID newListId={newListId}/>
+      </div>
+      <br />
+      <ShowNewListID newListId={newListId} />
 
       <ShowListID listId={listId} />
-
+      <br />
     </div>
   );
 };
 
 const ShowListID = ({ listId, newListId }) => {
-  return (
-    <div>
-      <div className="share-button" style={{textAlign: "center"}}>
+  const handleShareList = () => {
+    // let copyListURL = document.getElementById("copyListURL");
+    let copyListURL =
+      "http://shopping-assistent.herokuapp.com/?listId:" + listId;
 
+    let tmp = document.createElement("textarea");
+    tmp.value = copyListURL;
+    tmp.style.height = "0";
+    tmp.style.overflow = "hidden";
+    tmp.style.position = "fixed";
+    document.body.appendChild(tmp);
+    tmp.focus();
+
+    tmp.select();
+    tmp.setSelectionRange(0, 99999);
+
+    document.execCommand("copy");
+
+    alert("adress of List copied to clipboard: " + tmp.value);
+    document.body.removeChild(tmp);
+
+  };
+
+  return (
+    <div style={{ display: "block", margin: "0 auto", textAlign: "center" }}>
+      <button
+        onClick={handleShareList}
+        // disabled={true}
+        aria-label="Share via Link"
+      >
+        Share List
+      </button>
+      <br />
+      <br />
+
+      <div className="share-button" style={{ textAlign: "center" }}>
         {/* <div> List-ID: {listId}</div> */}
-        
+
         <a href={"http://shopping-assistent.herokuapp.com/?listId:" + listId}>
           {"#" + listId}
         </a>
@@ -164,24 +203,21 @@ const ShowListID = ({ listId, newListId }) => {
 };
 
 const ShowNewListID = ({ newListId }) => {
-    if (newListId == 0) {
-        return (
-            <div></div>
-        )
-    } else {
-        return (
-            <div style={{display: 'block', margin: "0 auto", textAlign: "center"}}>
-        <a href={"http://shopping-assistent.herokuapp.com/?listId:" + newListId}>
-            Open New List 
-            </a>
-            <br />
-            <br />
-            </div>
-        )
-    }
-    
-
-}
-
+  if (newListId == 0) {
+    return <div></div>;
+  } else {
+    return (
+      <div style={{ display: "block", margin: "0 auto", textAlign: "center" }}>
+        <a
+          href={"http://shopping-assistent.herokuapp.com/?listId:" + newListId}
+        >
+          Open New List
+        </a>
+        <br />
+        <br />
+      </div>
+    );
+  }
+};
 
 export default App;
