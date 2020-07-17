@@ -94,7 +94,7 @@ const App = () => {
       console.log(listId);
       setNewListId(listId);
       console.log(newListId);
-    }, 2000);
+    }, 1000);
     let newItems = [
       {
         text: "",

@@ -10,8 +10,9 @@ const ShowNewListID = ({ newListId }) => {
           <a
             href={"http://shopping-assistent.herokuapp.com/?listId:" + newListId}
           >
-            Open New List
+            <button>Open New List</button>
           </a>
+          {/* <a href="#"><button>Open new list</button></a> */}
           <br />
           <br />
         </div>
