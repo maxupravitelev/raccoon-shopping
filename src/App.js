@@ -41,12 +41,14 @@ const App = () => {
     console.log(newItems);
     console.log({ text, amount });
 
-    axios.put(
-      "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId,
-      {
-        newItems,
-      }
-    );
+    listService.update(listId, { newItems })
+
+    // axios.put(
+    //   "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId,
+    //   {
+    //     newItems,
+    //   }
+    // );
 
     setItems(newItems);
   };
@@ -55,12 +57,7 @@ const App = () => {
     const newItems = [...items];
     newItems[index].isCompleted = !newItems[index].isCompleted;
 
-    axios.put(
-      "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId,
-      {
-        newItems,
-      }
-    );
+    listService.update(listId, { newItems })
 
     setItems(newItems);
   };
@@ -69,12 +66,7 @@ const App = () => {
     const newItems = [...items];
     newItems.splice(index, 1);
 
-    axios.put(
-      "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId,
-      {
-        newItems,
-      }
-    );
+    listService.update(listId, { newItems })
 
     setItems(newItems);
   };

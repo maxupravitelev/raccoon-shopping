@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-// const baseUrl = 'http://localhost:3001/api/lists'
+// const baseUrl = 'http://localhost:3001/api/lists/'
 const baseUrl = 'https://shopping-assistant-json-server.herokuapp.com/lists/'
 // const baseUrl = '/api/lists'
 
@@ -20,9 +20,10 @@ const getAll = (listId) => {
     return request.then(response => response.data)
   }
 
+
 export default { 
   getAll: getAll, 
-  create: create, 
+  create: create,
   update: update 
 }
 
