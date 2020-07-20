@@ -7,6 +7,8 @@ import ShowListID from "./components/ShowListID";
 import ShowNewListID from "./components/ShowNewListID";
 import axios from "axios";
 import logo from "./img/logo.png";
+import listService from './services/lists';
+
 
 const App = () => {
   const [items, setItems] = useState([{ text: "...loading..." }]);
@@ -25,16 +27,13 @@ const App = () => {
   }
 
   useEffect(() => {
-    axios
-      .get(
-        "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId
-      )
-      .then((response) => {
-        //   console.log("promise fulfilled");
-        //   console.log(response.data);
-        setItems(response.data.newItems);
-      });
-  }, []);
+    listService
+      .getAll(listId)
+      .then(initialList => {
+        console.log(initialList)
+        setItems(initialList.newItems)
+      })
+  }, [])
 
   const addItem = (text, amount) => {
     const newItems = [...items, { text, amount, isCompleted: false }];
