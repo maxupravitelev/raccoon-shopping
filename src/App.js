@@ -77,15 +77,20 @@ const App = () => {
       .get("https://shopping-assistant-json-server.herokuapp.com/lists/")
       .then((response) => {
         currentArrLengthOnServer = response.data.length;
-        //   console.log(currentArrLengthOnServer);
+        console.log(currentArrLengthOnServer);
+        listId = currentArrLengthOnServer + 1;
+        console.log(listId);
+        setNewListId(listId);
+        console.log(newListId);
       });
 
-    setTimeout(() => {
-      listId = currentArrLengthOnServer + 1;
-      console.log(listId);
-      setNewListId(listId);
-      console.log(newListId);
-    }, 1000);
+    // setTimeout(() => {
+    //   listId = currentArrLengthOnServer + 1;
+    //   console.log(listId);
+    //   setNewListId(listId);
+    //   console.log(newListId);
+    // }, 1000);
+    
     let newItems = [
       {
         text: "",
