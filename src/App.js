@@ -7,12 +7,15 @@ import ShowListID from "./components/ShowListID";
 import ShowNewListID from "./components/ShowNewListID";
 import axios from "axios";
 import logo from "./img/logo.png";
-import listService from './services/lists';
-
+import listService from "./services/lists";
 
 const App = () => {
   const [items, setItems] = useState([{ text: "...loading..." }]);
   const [newListId, setNewListId] = useState(0);
+  const [darkMode, setDarkMode] = useState({
+    darkModeOn: false,
+    backgroundColor: "fff",
+  });
 
   // work around until react routes are implemented
   let listId = null;
@@ -27,13 +30,11 @@ const App = () => {
   }
 
   useEffect(() => {
-    listService
-      .getAll(listId)
-      .then(initialList => {
-        console.log(initialList)
-        setItems(initialList.newItems)
-      })
-  }, [])
+    listService.getAll(listId).then((initialList) => {
+      console.log(initialList);
+      setItems(initialList.newItems);
+    });
+  }, []);
 
   const addItem = (text, amount) => {
     const newItems = [...items, { text, amount, isCompleted: false }];
@@ -41,7 +42,7 @@ const App = () => {
     console.log(newItems);
     console.log({ text, amount });
 
-    listService.update(listId, { newItems })
+    listService.update(listId, { newItems });
 
     // axios.put(
     //   "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId,
@@ -57,7 +58,7 @@ const App = () => {
     const newItems = [...items];
     newItems[index].isCompleted = !newItems[index].isCompleted;
 
-    listService.update(listId, { newItems })
+    listService.update(listId, { newItems });
 
     setItems(newItems);
   };
@@ -66,7 +67,7 @@ const App = () => {
     const newItems = [...items];
     newItems.splice(index, 1);
 
-    listService.update(listId, { newItems })
+    listService.update(listId, { newItems });
 
     setItems(newItems);
   };
@@ -83,7 +84,7 @@ const App = () => {
         setNewListId(listId);
         console.log(newListId);
       });
-   
+
     let newItems = [
       {
         text: "",
@@ -100,8 +101,27 @@ const App = () => {
     // setItems([{}, {}]);
   };
 
+
+  const handleDarkMode = () => {
+    if (darkMode.darkModeOn == false) {   
+      let newColor = { 
+        darkModeOn: true,  
+        backgroundColor: "#222" };
+        setDarkMode(newColor);
+
+    } else {
+        console.log("yo 1");
+
+      let newColor = { 
+        darkModeOn: false,  
+        backgroundColor: "#fff" };
+      setDarkMode(newColor);
+
+    }
+  };
+
   return (
-    <div className="app">
+    <div className="app" style={{backgroundColor: darkMode.backgroundColor}}>
       <img
         src={logo}
         style={{
@@ -124,10 +144,10 @@ const App = () => {
       <br />
       <br />
       <br />
-      <div className="addItem">
+      <div>
         <AddItemForm addItem={addItem} />
       </div>
-
+      
       <div id="share-button">
         <button
           onClick={handleNewList}
@@ -142,6 +162,7 @@ const App = () => {
 
       <ShowListID listId={listId} />
       <br />
+      <button id="share-button" onClick={handleDarkMode}>☀</button>
     </div>
   );
 };
