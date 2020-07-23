@@ -83,14 +83,7 @@ const App = () => {
         setNewListId(listId);
         console.log(newListId);
       });
-
-    // setTimeout(() => {
-    //   listId = currentArrLengthOnServer + 1;
-    //   console.log(listId);
-    //   setNewListId(listId);
-    //   console.log(newListId);
-    // }, 1000);
-    
+   
     let newItems = [
       {
         text: "",
