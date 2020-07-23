@@ -14,7 +14,8 @@ const App = () => {
   const [newListId, setNewListId] = useState(0);
   const [darkMode, setDarkMode] = useState({
     darkModeOn: false,
-    backgroundColor: "fff",
+    backgroundColor: "#fff",
+    buttonBackgroundColor: "#333",
   });
 
   // work around until react routes are implemented
@@ -101,27 +102,28 @@ const App = () => {
     // setItems([{}, {}]);
   };
 
-
   const handleDarkMode = () => {
-    if (darkMode.darkModeOn == false) {   
-      let newColor = { 
-        darkModeOn: true,  
-        backgroundColor: "#222" };
-        setDarkMode(newColor);
-
-    } else {
-        console.log("yo 1");
-
-      let newColor = { 
-        darkModeOn: false,  
-        backgroundColor: "#fff" };
+    if (darkMode.darkModeOn == false) {
+      let newColor = {
+        darkModeOn: true,
+        backgroundColor: "#222",
+        buttonBackgroundColor: "#fff",
+      };
       setDarkMode(newColor);
+    } else {
+      console.log("yo 1");
 
+      let newColor = {
+        darkModeOn: false,
+        backgroundColor: "#fff",
+        buttonBackgroundColor: "#222",
+      };
+      setDarkMode(newColor);
     }
   };
 
   return (
-    <div className="app" style={{backgroundColor: darkMode.backgroundColor}}>
+    <div className="app" style={{ backgroundColor: darkMode.backgroundColor }}>
       <img
         src={logo}
         style={{
@@ -139,15 +141,19 @@ const App = () => {
           item={item}
           completeItem={completeItem}
           removeItem={removeItem}
+          setColor={{ backgroundColor: darkMode.backgroundColor }}
         />
       ))}
       <br />
       <br />
       <br />
       <div>
-        <AddItemForm addItem={addItem} />
+        <AddItemForm
+          addItem={addItem}
+          setColor={{ backgroundColor: darkMode.backgroundColor }}
+        />
       </div>
-      
+
       <div id="share-button">
         <button
           onClick={handleNewList}
@@ -160,9 +166,15 @@ const App = () => {
       <br />
       <ShowNewListID newListId={newListId} />
 
-      <ShowListID listId={listId} />
+      {/* <ShowListID listId={listId} /> */}
       <br />
-      <button id="share-button" onClick={handleDarkMode}>☀</button>
+      <button
+        id="share-button"
+        onClick={handleDarkMode}
+        style={{ width: 10, display: "flex", margin: "auto" }}
+      >
+        ☀
+      </button>
     </div>
   );
 };

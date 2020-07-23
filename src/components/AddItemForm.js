@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddItemForm({ addItem }) {
+function AddItemForm({ addItem, setColor }) {
   const [value, setValue] = useState({
     text: "",
     amount: 0,
@@ -43,6 +43,7 @@ function AddItemForm({ addItem }) {
       <input
         type="text"
         className="input"
+        style={setColor}
         aria-label={labelText}
         aria-required="true"
         placeholder={labelText}
@@ -55,6 +56,7 @@ function AddItemForm({ addItem }) {
         type="number"
         aria-label="Add Amount"
         aria-required="true"
+        style={setColor}
         placeholder="Amount"
         size="3"
         name="amount"
