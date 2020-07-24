@@ -44,6 +44,7 @@ function AddItemForm({ addItem, setColor }) {
         type="text"
         className="input"
         style={setColor}
+        
         aria-label={labelText}
         aria-required="true"
         placeholder={labelText}

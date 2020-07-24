@@ -6,7 +6,8 @@ import AddItemForm from "./components/AddItemForm";
 import ShowListID from "./components/ShowListID";
 import ShowNewListID from "./components/ShowNewListID";
 import axios from "axios";
-import logo from "./img/logo.png";
+import logoLight from "./img/logo.png";
+import logoInverse from "./img/logoInverse.png";
 import listService from "./services/lists";
 
 const App = () => {
@@ -16,6 +17,9 @@ const App = () => {
     darkModeOn: false,
     backgroundColor: "#fff",
     buttonBackgroundColor: "#333",
+    fontColorItems: "black",
+    fontColorButtons: "white",
+    logo: logoLight
   });
 
   // work around until react routes are implemented
@@ -108,6 +112,9 @@ const App = () => {
         darkModeOn: true,
         backgroundColor: "#222",
         buttonBackgroundColor: "#fff",
+        fontColorItems: "#fff",
+        fontColorButtons: "#222",
+        logo: logoInverse
       };
       setDarkMode(newColor);
     } else {
@@ -117,15 +124,20 @@ const App = () => {
         darkModeOn: false,
         backgroundColor: "#fff",
         buttonBackgroundColor: "#222",
+        fontColorItems: "#222",
+        fontColorButtons: "#fff",
+        logo: logoLight
       };
       setDarkMode(newColor);
     }
   };
 
+   
+
   return (
-    <div className="app" style={{ backgroundColor: darkMode.backgroundColor }}>
+    <div className="app" style={{ backgroundColor: darkMode.backgroundColor, color: darkMode.fontColorItems }}>
       <img
-        src={logo}
+        src={darkMode.logo}
         style={{
           maxWidth: 30,
           display: "block",
@@ -141,7 +153,7 @@ const App = () => {
           item={item}
           completeItem={completeItem}
           removeItem={removeItem}
-          setColor={{ backgroundColor: darkMode.backgroundColor }}
+          setColor={{ backgroundColor: darkMode.backgroundColor, color: darkMode.fontColorItems }}
         />
       ))}
       <br />
@@ -150,11 +162,11 @@ const App = () => {
       <div>
         <AddItemForm
           addItem={addItem}
-          setColor={{ backgroundColor: darkMode.backgroundColor }}
+          setColor={{ backgroundColor: darkMode.backgroundColor, color: darkMode.fontColorItems }}
         />
       </div>
 
-      <div id="share-button">
+      <div id="share-button" style={{color: darkMode.fontColorButtons}}>
         <button
           onClick={handleNewList}
           //   disabled={true}
