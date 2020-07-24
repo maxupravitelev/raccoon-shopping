@@ -2,7 +2,7 @@
 
 ## info
 
-This repository is an early stage of a shopping-list web app, whose features should be accessible for people with disabilities and support them and their allies during shopping.
+This repository is an early stage of a shopping-list web app, whose goal it is to be accessable for everybody. It aims at empowering people to help each other.
 
 ## current version
  
