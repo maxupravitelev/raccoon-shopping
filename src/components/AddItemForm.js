@@ -9,6 +9,16 @@ function AddItemForm({ addItem, setColor }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (parseInt(value.text) != NaN ) {
+      let itemBarcode = value.text; 
+      console.log(itemBarcode)
+      fetch(`https://world.openfoodfacts.org/api/v0/product/${itemBarcode}.json?fields=generic_name`, {
+        'User-Agent': 'shopping assistant', 
+        'Plattform': 'web-app', 
+        'Version': '1.0'
+      }).then(data => console.log(data))
+    }
+
     if (!value) return;
 
     let itemObject = {
@@ -28,6 +38,8 @@ function AddItemForm({ addItem, setColor }) {
 
   const handleValue = (e) => {
     let name = e.target.name;
+    console.log(setColor)
+
     let newValue = e.target.value;
     setValue({
       ...value,
@@ -36,6 +48,7 @@ function AddItemForm({ addItem, setColor }) {
   };
 
   let labelText = 'Type in item and press Enter or Add-Button...'
+
 
   return (
     

@@ -44,8 +44,8 @@ const App = () => {
   const addItem = (text, amount) => {
     const newItems = [...items, { text, amount, isCompleted: false }];
 
-    console.log(newItems);
-    console.log({ text, amount });
+    // console.log(newItems);
+    // console.log({ text, amount });
 
     listService.update(listId, { newItems });
 
@@ -118,7 +118,7 @@ const App = () => {
       };
       setDarkMode(newColor);
     } else {
-      console.log("yo 1");
+      // console.log("yo 1");
 
       let newColor = {
         darkModeOn: false,
@@ -166,9 +166,10 @@ const App = () => {
         />
       </div>
 
-      <div id="share-button" style={{color: darkMode.fontColorButtons}}>
+      <div id="share-button" >
         <button
           onClick={handleNewList}
+          style={{backgroundColor: darkMode.buttonBackgroundColor, color: darkMode.fontColorButtons}}
           //   disabled={true}
           aria-label="New List"
         >
