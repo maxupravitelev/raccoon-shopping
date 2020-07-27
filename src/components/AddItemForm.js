@@ -17,28 +17,30 @@ function AddItemForm({ addItem, setColor }) {
 
       let headers = {
         "User-Agent": "shopping assistant",
-        Plattform: "web-app",
-        Version: "1.0",
+        'Plattform': "web-app",
+        'Version': "0.1",
       };
 
       console.log(itemBarcode);
       let foodAPIUrl = `https://world.openfoodfacts.org/api/v0/product/${itemBarcode}`;
 
-      let foodRequest = axios.get(foodAPIUrl).then((response) => {
-        console.log(response);
-        let itemNameFromAPI = response.data.product.generic_name;
-        console.log(itemNameFromAPI)
+      axios
+        .get(foodAPIUrl, headers)
+        .then((response) => {
+          console.log(response);
+          let itemNameFromAPI = response.data.product.generic_name;
+          console.log(itemNameFromAPI);
 
-        addItem(itemNameFromAPI, value.amount);
+          addItem(itemNameFromAPI, value.amount);
 
-        setValue({
-          text: "",
-          amount: 0,
-          isCompleted: false,
+          setValue({
+            text: "",
+            amount: 0,
+            isCompleted: false,
+          });
+
+          return;
         });
-
-        return;
-      });
     }
 
     addItem(value.text, value.amount);
