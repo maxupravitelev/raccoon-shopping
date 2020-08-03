@@ -12,9 +12,10 @@ function AddItemForm({ addItem, setColor }) {
 
     if (!value) return;
 
-    if (parseInt(value.text) != NaN) {
+    if (!isNaN(parseInt(value.text))) {
       let itemBarcode = value.text;
-
+      
+      //required by OFF API
       let headers = {
         "User-Agent": "shopping assistant",
         'Plattform': "web-app",
@@ -89,7 +90,6 @@ function AddItemForm({ addItem, setColor }) {
         name="amount"
         value={value.amount}
         onChange={handleValue}
-        style={{ textAlign: "center" }}
       />
       <button
         id="addButton"

@@ -34,6 +34,8 @@ const App = () => {
     listId = 1;
   }
 
+  // listId = '5f214b299c7c213e069f2a52'
+
   useEffect(() => {
     listService.getAll(listId).then((initialList) => {
       console.log(initialList);

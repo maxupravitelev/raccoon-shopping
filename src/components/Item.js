@@ -5,6 +5,8 @@ function Item({ item, index, completeItem, removeItem, setColor }) {
     return (
       <section
         className="item"
+
+        //todo: check for screen reader compatibility
         style={{ textDecoration: item.isCompleted ? "line-through" : "" }}
       >
         {item.amount}
