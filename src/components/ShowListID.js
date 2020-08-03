@@ -1,10 +1,12 @@
 import React from "react";
 
-const ShowListID = ({ listId, newListId }) => {
+const ShowListID = ({ listId, newListId, setColor }) => {
     const handleShareList = () => {
       let copyListURL =
         "http://shopping-assistent.herokuapp.com/?listId:" + listId;
   
+      
+      // create empty textarea for copy&pasting  
       let tmp = document.createElement("textarea");
       tmp.value = copyListURL;
       tmp.style.height = "0";
@@ -22,11 +24,12 @@ const ShowListID = ({ listId, newListId }) => {
       document.body.removeChild(tmp);
   
     };
-  
+
     return (
       <div style={{ display: "block", margin: "0 auto", textAlign: "center" }}>
         <button
           onClick={handleShareList}
+          style={setColor}
           // disabled={true}
           aria-label="Share via Link"
         >
@@ -38,9 +41,9 @@ const ShowListID = ({ listId, newListId }) => {
         <div className="share-button" style={{ textAlign: "center" }}>
           {/* <div> List-ID: {listId}</div> */}
   
-          <a href={"http://shopping-assistent.herokuapp.com/?listId:" + listId}>
+          {/* <a href={"http://shopping-assistent.herokuapp.com/?listId:" + listId}>
             {"#" + listId}
-          </a>
+          </a> */}
         </div>
       </div>
     );

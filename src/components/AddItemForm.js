@@ -65,13 +65,13 @@ function AddItemForm({ addItem, setColor }) {
   };
 
   let labelText = "Type in item and press Enter or Add-Button...";
-
+  console.log(setColor)
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
         className="input"
-        style={setColor}
+        style={setColor.buttonEditItemsStyle}
         aria-label={labelText}
         aria-required="true"
         placeholder={labelText}
@@ -84,7 +84,7 @@ function AddItemForm({ addItem, setColor }) {
         type="number"
         aria-label="Add Amount"
         aria-required="true"
-        style={setColor}
+        style={setColor.buttonEditItemsStyle}
         placeholder="Amount"
         size="3"
         name="amount"
@@ -93,7 +93,7 @@ function AddItemForm({ addItem, setColor }) {
       />
       <button
         id="addButton"
-        style={{ width: "60%", display: "block", margin: "2em auto" }}
+        style={setColor.buttonNavStyle}
         aria-label="Add"
       >
         +

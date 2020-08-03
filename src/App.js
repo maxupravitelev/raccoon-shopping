@@ -132,10 +132,11 @@ const App = () => {
     }
   };
 
-   
+    let buttonEditItemsStyle = { backgroundColor: darkMode.backgroundColor, color: darkMode.fontColorItems }
+    let buttonNavStyle = { backgroundColor: darkMode.buttonBackgroundColor, color: darkMode.fontColorButtons }
 
   return (
-    <div className="app" style={{ backgroundColor: darkMode.backgroundColor, color: darkMode.fontColorItems }}>
+    <div className="app" style={buttonEditItemsStyle}>
       <img
         src={darkMode.logo}
         alt="raccoon logo"
@@ -154,7 +155,7 @@ const App = () => {
           item={item}
           completeItem={completeItem}
           removeItem={removeItem}
-          setColor={{ backgroundColor: darkMode.backgroundColor, color: darkMode.fontColorItems }}
+          setColor={buttonEditItemsStyle}
         />
       ))}
       <br />
@@ -163,14 +164,14 @@ const App = () => {
       <div>
         <AddItemForm
           addItem={addItem}
-          setColor={{ backgroundColor: darkMode.backgroundColor, color: darkMode.fontColorItems }}
+          setColor={{buttonEditItemsStyle, buttonNavStyle}}
         />
       </div>
 
       <div id="share-button" >
         <button
           onClick={handleNewList}
-          style={{backgroundColor: darkMode.buttonBackgroundColor, color: darkMode.fontColorButtons}}
+          style={buttonNavStyle}
           //   disabled={true}
           aria-label="New List"
         >
@@ -178,14 +179,21 @@ const App = () => {
         </button>
       </div>
       <br />
-      <ShowNewListID newListId={newListId} />
+      <ShowNewListID 
+        newListId={newListId} 
+        setColor={buttonNavStyle}
+        />
 
-      <ShowListID listId={listId} />
+      <ShowListID 
+        listId={listId} 
+        setColor={buttonNavStyle}
+        />
       <br />
       <button
-        id="share-button"
+        id="darkModeButton"
         onClick={handleDarkMode}
-        style={{ width: 10, display: "flex", margin: "auto" }}
+        style = {buttonNavStyle}
+        // style={{ buttonNavStyle, width: 10, display: "flex", margin: "auto" }}
       >
         ☀
       </button>
