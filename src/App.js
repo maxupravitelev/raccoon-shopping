@@ -105,7 +105,6 @@ const App = () => {
       newItems,
     });
 
-    // setItems([{}, {}]);
   };
 
   const handleDarkMode = () => {
@@ -120,7 +119,6 @@ const App = () => {
       };
       setDarkMode(newColor);
     } else {
-      // console.log("yo 1");
 
       let newColor = {
         darkModeOn: false,
@@ -140,6 +138,7 @@ const App = () => {
     <div className="app" style={{ backgroundColor: darkMode.backgroundColor, color: darkMode.fontColorItems }}>
       <img
         src={darkMode.logo}
+        alt="raccoon logo"
         style={{
           maxWidth: 30,
           display: "block",
@@ -181,7 +180,7 @@ const App = () => {
       <br />
       <ShowNewListID newListId={newListId} />
 
-      {/* <ShowListID listId={listId} /> */}
+      <ShowListID listId={listId} />
       <br />
       <button
         id="share-button"
