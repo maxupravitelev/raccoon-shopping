@@ -19,7 +19,7 @@ const App = () => {
     buttonBackgroundColor: "#333",
     fontColorItems: "black",
     fontColorButtons: "white",
-    logo: logoLight
+    logo: logoLight,
   });
 
   // work around until react routes are implemented
@@ -104,7 +104,6 @@ const App = () => {
       listId,
       newItems,
     });
-
   };
 
   const handleDarkMode = () => {
@@ -115,25 +114,36 @@ const App = () => {
         buttonBackgroundColor: "#fff",
         fontColorItems: "#fff",
         fontColorButtons: "#222",
-        logo: logoInverse
+        logo: logoInverse,
+        body: changeBackground("#fff")
       };
       setDarkMode(newColor);
     } else {
-
       let newColor = {
         darkModeOn: false,
         backgroundColor: "#fff",
         buttonBackgroundColor: "#222",
         fontColorItems: "#222",
         fontColorButtons: "#fff",
-        logo: logoLight
+        logo: logoLight,
+        body: changeBackground("#222")
       };
       setDarkMode(newColor);
     }
   };
 
-    let buttonEditItemsStyle = { backgroundColor: darkMode.backgroundColor, color: darkMode.fontColorItems }
-    let buttonNavStyle = { backgroundColor: darkMode.buttonBackgroundColor, color: darkMode.fontColorButtons }
+  const changeBackground = (color) => {
+    document.body.style.background = color;
+  }
+
+  let buttonEditItemsStyle = {
+    backgroundColor: darkMode.backgroundColor,
+    color: darkMode.fontColorItems,
+  };
+  let buttonNavStyle = {
+    backgroundColor: darkMode.buttonBackgroundColor,
+    color: darkMode.fontColorButtons,
+  };
 
   return (
     <div className="app" style={buttonEditItemsStyle}>
@@ -164,11 +174,11 @@ const App = () => {
       <div>
         <AddItemForm
           addItem={addItem}
-          setColor={{buttonEditItemsStyle, buttonNavStyle}}
+          setColor={{ buttonEditItemsStyle, buttonNavStyle }}
         />
       </div>
 
-      <div id="share-button" >
+      <div id="share-button">
         <button
           onClick={handleNewList}
           style={buttonNavStyle}
@@ -179,20 +189,14 @@ const App = () => {
         </button>
       </div>
       <br />
-      <ShowNewListID 
-        newListId={newListId} 
-        setColor={buttonNavStyle}
-        />
+      <ShowNewListID newListId={newListId} setColor={buttonNavStyle} />
 
-      <ShowListID 
-        listId={listId} 
-        setColor={buttonNavStyle}
-        />
+      <ShowListID listId={listId} setColor={buttonNavStyle} />
       <br />
       <button
         id="darkModeButton"
         onClick={handleDarkMode}
-        style = {buttonNavStyle}
+        style={buttonNavStyle}
         // style={{ buttonNavStyle, width: 10, display: "flex", margin: "auto" }}
       >
         ☀
