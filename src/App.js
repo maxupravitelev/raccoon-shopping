@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Item from "./components/Item";
 import AddItemForm from "./components/AddItemForm";
-import ShowListID from "./components/ShowListID";
+import ShareList from "./components/ShareList";
 import ShowNewListID from "./components/ShowNewListID";
 import axios from "axios";
 import logoLight from "./img/logo.png";
@@ -46,17 +46,7 @@ const App = () => {
   const addItem = (text, amount) => {
     const newItems = [...items, { text, amount, isCompleted: false }];
 
-    // console.log(newItems);
-    // console.log({ text, amount });
-
     listService.update(listId, { newItems });
-
-    // axios.put(
-    //   "https://shopping-assistant-json-server.herokuapp.com/lists/" + listId,
-    //   {
-    //     newItems,
-    //   }
-    // );
 
     setItems(newItems);
   };
@@ -132,6 +122,8 @@ const App = () => {
     }
   };
 
+
+  // changing body background color
   const changeBackground = (color) => {
     document.body.style.background = color;
   }
@@ -191,13 +183,12 @@ const App = () => {
       <br />
       <ShowNewListID newListId={newListId} setColor={buttonNavStyle} />
 
-      <ShowListID listId={listId} setColor={buttonNavStyle} />
+      <ShareList listId={listId} setColor={buttonNavStyle} />
       <br />
       <button
         id="darkModeButton"
         onClick={handleDarkMode}
         style={buttonNavStyle}
-        // style={{ buttonNavStyle, width: 10, display: "flex", margin: "auto" }}
       >
         ☀
       </button>
