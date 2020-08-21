@@ -31,7 +31,7 @@ const App = () => {
       listId = queryString.split(":")[1];
     }
   } else {
-    listId = 1;
+    listId = 0;
   }
 
   // listId = '5f214b299c7c213e069f2a52'
@@ -39,7 +39,7 @@ const App = () => {
   useEffect(() => {
     listService.getAll(listId).then((initialList) => {
       console.log(initialList);
-      setItems(initialList.newItems);
+      setItems(initialList);
     });
   }, []);
 

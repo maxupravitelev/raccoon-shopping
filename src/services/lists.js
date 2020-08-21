@@ -5,7 +5,7 @@ import axios from 'axios'
 const baseUrl = 'http://localhost:3001/api/lists/'
 
 // testing with remote backend
-// const baseUrl = 'https://shopping-assistant-json-server.herokuapp.com/lists/'
+// const baseUrl = 'https://shopping-assistant-json-server.herokuapp.com/api/lists/'
 
 // production version 
 // const baseUrl = '/api/lists/'
