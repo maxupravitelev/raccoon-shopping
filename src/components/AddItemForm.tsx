@@ -5,6 +5,7 @@ function AddItemForm({ addItem, setColor }) {
   const [value, setValue] = useState({
     text: "",
     amount: 0,
+    isCompleted: false
   });
 
   const handleSubmit = (e) => {

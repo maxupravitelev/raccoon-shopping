@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShareList = ({ listId, newListId, setColor }) => {
+const ShareList = ({ listId, setColor }) => {
     const handleShareList = () => {
       let copyListURL =
         "http://shopping-assistent.herokuapp.com/?listId:" + listId;

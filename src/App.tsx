@@ -52,7 +52,7 @@ const App = () => {
   };
 
   const completeItem = (index) => {
-    const newItems = [...items];
+    const newItems: any = [...items];
     newItems[index].isCompleted = !newItems[index].isCompleted;
 
     listService.update(listId, { newItems });
@@ -181,7 +181,10 @@ const App = () => {
         </button>
       </div>
       <br />
-      <ShowNewListID newListId={newListId} setColor={buttonNavStyle} />
+      
+      {/* <ShowNewListID newListId={newListId} setColor={buttonNavStyle} /> */}
+      <ShowNewListID newListId={newListId} />
+
 
       <ShareList listId={listId} setColor={buttonNavStyle} />
       <br />
