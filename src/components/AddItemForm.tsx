@@ -17,8 +17,8 @@ function AddItemForm({ addItem, setColor }) {
       let itemBarcode = value.text;
       
       //required by OFF API
-      let headers = {
-        "User-Agent": "shopping assistant",
+      let headers: any = {
+        'User-Agent': "raccoon assistant",
         'Plattform': "web-app",
         'Version': "0.1",
       };
@@ -76,7 +76,7 @@ function AddItemForm({ addItem, setColor }) {
         aria-label={labelText}
         aria-required="true"
         placeholder={labelText}
-        size="50"
+        size={50}   // before ts: string
         value={value.text}
         name="text"
         onChange={handleValue}
@@ -87,7 +87,7 @@ function AddItemForm({ addItem, setColor }) {
         aria-required="true"
         style={setColor.buttonEditItemsStyle}
         placeholder="Amount"
-        size="3"
+        size={3}  // before ts: string
         name="amount"
         value={value.amount}
         onChange={handleValue}
