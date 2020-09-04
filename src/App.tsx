@@ -60,14 +60,25 @@ const App = () => {
     setItems(newItems);
   };
 
+  // const removeItem = (index) => {
+  //   const newItems = [...items];
+  //   newItems.splice(index, 1);
+
+  //   listService.update(listId, { newItems });
+
+  //   setItems(newItems);
+  // };
+
   const removeItem = (index) => {
     const newItems = [...items];
     newItems.splice(index, 1);
-
-    listService.update(listId, { newItems });
+    console.log(index)
+    console.log(items[index]["_id"])
+    listService.remove(items[index]["_id"]);
 
     setItems(newItems);
   };
+
 
   const handleNewList = () => {
     let currentArrLengthOnServer = null;

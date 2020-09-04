@@ -26,10 +26,18 @@ const getAll = (listId) => {
     return request.then(response => response.data)
   }
 
+  const itemUrl = 'https://shopping-assistant-json-server.herokuapp.com/api/items'
+
+  const remove = (id) => {
+    const request = axios.delete(`${itemUrl}/${id}`)
+    return request.then(response => response.data)
+  }
+
 
 export default { 
   getAll: getAll, 
   create: create,
-  update: update 
+  update: update,
+  remove: remove 
 }
 
