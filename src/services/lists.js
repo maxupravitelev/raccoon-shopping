@@ -16,8 +16,14 @@ const getAll = (listId) => {
     return request.then(response => response.data)
   }
   
+
+  const newItemUrl = 'https://shopping-assistant-json-server.herokuapp.com/api/new-item'
+  // const newItemUrl = 'http://localhost:3001/api/new-item'
+
+
   const create = newObject => {
-    const request = axios.post(baseUrl, newObject)
+    const request = axios.post(newItemUrl, newObject)
+    console.log(newObject)
     return request.then(response => response.data)
   }
   

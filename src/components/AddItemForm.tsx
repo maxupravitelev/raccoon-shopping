@@ -56,7 +56,7 @@ const AddItemForm = ({ addItem, setColor }) => {
 
   const handleValue = (e) => {
     let name = e.target.name;
-    console.log(setColor);
+    // console.log(setColor);
 
     let newValue = e.target.value;
     setValue({

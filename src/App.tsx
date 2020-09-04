@@ -43,10 +43,26 @@ const App = () => {
     });
   }, []);
 
-  const addItem = (text, amount) => {
-    const newItems = [...items, { text, amount, isCompleted: false }];
+  // const addItem = (text, amount) => {
+  //   const newItems = [...items, { text, amount, isCompleted: false }];
 
-    listService.update(listId, { newItems });
+  //   listService.update(listId, { newItems });
+
+  //   setItems(newItems);
+  // };
+
+  const addItem = (text, amount) => {
+    
+    const newItem = {
+      text, 
+      amount,
+      "listId": listId, 
+      isCompleted: false
+    }
+    
+    const newItems = [...items, newItem];
+
+    listService.create(newItem,);
 
     setItems(newItems);
   };
