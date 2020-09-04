@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function AddItemForm({ addItem, setColor }) {
+const AddItemForm = ({ addItem, setColor }) => {
   const [value, setValue] = useState({
     text: "",
     amount: 0,

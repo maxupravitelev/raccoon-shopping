@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function Item({ item, index, completeItem, removeItem, setColor }) {
+const Item = ({ item, index, completeItem, removeItem, setColor }) => {
     return (
       <section
         className="item"
