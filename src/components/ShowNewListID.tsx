@@ -2,7 +2,7 @@ import React from "react";
 
 
 const ShowNewListID = ({ newListId }) => {
-    if (newListId == 0) {
+    if (newListId === 0) {
       return <div></div>;
     } else {
       return (

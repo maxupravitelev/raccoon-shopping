@@ -66,7 +66,7 @@ const AddItemForm = ({ addItem, setColor }) => {
   };
 
   let labelText = "Type in item and press Enter or Add-Button...";
-  console.log(setColor)
+  // console.log(setColor)
   return (
     <form onSubmit={handleSubmit}>
       <input
