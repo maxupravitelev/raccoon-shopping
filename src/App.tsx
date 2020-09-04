@@ -41,15 +41,9 @@ const App = () => {
       console.log(initialList);
       setItems(initialList);
     });
+  // eslint-disable-next-line
   }, []);
 
-  // const addItem = (text, amount) => {
-  //   const newItems = [...items, { text, amount, isCompleted: false }];
-
-  //   listService.update(listId, { newItems });
-
-  //   setItems(newItems);
-  // };
 
   const addItem = (text, amount) => {
     
