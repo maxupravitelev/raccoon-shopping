@@ -64,11 +64,9 @@ const App = () => {
 
       const newItems = [...items, newItem];
 
-      console.log(newItem)
 
       setItems(newItems);
 
-      console.log(newItems)
 
     });
 
@@ -87,13 +85,7 @@ const App = () => {
   const removeItem = (index) => {
     const newItems = [...items];
     newItems.splice(index, 1);
-    console.log(items[index])
 
-    // if (!items[index]["_id"]) {
-    //   listService.remove(items[index][itemId]);
-    // } else {
-    //   listService.remove(items[index]["_id"]);
-    // }
     listService.remove(items[index]["_id"]);
     setItems(newItems);
   };
