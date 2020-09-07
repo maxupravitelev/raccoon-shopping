@@ -51,14 +51,28 @@ const App = () => {
       text, 
       amount,
       "listId": listId, 
-      isCompleted: false
+      isCompleted: false,
+      "_id": "temp"
     }
     
-    const newItems = [...items, newItem];
+    
 
-    listService.create(newItem,);
+    listService.create(newItem).then((res) => {
+      console.log(res)
 
-    setItems(newItems);
+      newItem["_id"] = res.itemId
+
+      const newItems = [...items, newItem];
+
+      console.log(newItem)
+
+      setItems(newItems);
+
+      console.log(newItems)
+
+    });
+
+
   };
 
   const completeItem = (index) => {
@@ -70,13 +84,17 @@ const App = () => {
     setItems(newItems);
   };
 
-
   const removeItem = (index) => {
     const newItems = [...items];
     newItems.splice(index, 1);
+    console.log(items[index])
 
+    // if (!items[index]["_id"]) {
+    //   listService.remove(items[index][itemId]);
+    // } else {
+    //   listService.remove(items[index]["_id"]);
+    // }
     listService.remove(items[index]["_id"]);
-
     setItems(newItems);
   };
 

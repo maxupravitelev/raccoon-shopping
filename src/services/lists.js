@@ -23,7 +23,7 @@ const getAll = (listId) => {
 
   const create = newObject => {
     const request = axios.post(newItemUrl, newObject)
-    console.log(newObject)
+    // console.log(newObject)
     return request.then(response => response.data)
   }
   
