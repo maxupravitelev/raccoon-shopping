@@ -8,7 +8,7 @@ const ShowNewListID = ({ newListId }) => {
       return (
         <div style={{ display: "block", margin: "0 auto", textAlign: "center" }}>
           <a
-            href={"http://shopping-assistent.herokuapp.com/?listId:" + newListId}
+            href={"https://raccoon-shopping.herokuapp.com/?listId:" + newListId}
           >
             <button>Open New List</button>
           </a>

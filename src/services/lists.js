@@ -17,8 +17,8 @@ const getAll = (listId) => {
   }
   
 
-  const newItemUrl = 'https://raccoon-shopping-server.herokuapp.com/api/new-item'
-  // const newItemUrl = 'http://localhost:3001/api/new-item'
+  // const newItemUrl = 'https://raccoon-shopping-server.herokuapp.com/api/items/new-item'
+  const newItemUrl = 'http://localhost:3001/api/items/new-item'
 
 
   const create = newObject => {
