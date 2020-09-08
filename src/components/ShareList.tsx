@@ -3,7 +3,7 @@ import React from "react";
 const ShareList = ({ listId, setColor }) => {
     const handleShareList = () => {
       let copyListURL =
-        "https://raccoon-shopping.herokuapp.com/api/lists/:" + listId;
+        "https://raccoon-shopping.herokuapp.com/api/lists/?listId=" + listId;
   
       
       // create empty textarea for copy&pasting  
