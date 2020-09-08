@@ -90,7 +90,7 @@ const App = () => {
 
   const handleNewList = () => {
     listService.createList().then(res => {
-      console.log(res.listId)
+      console.log(res)
       setNewListId(res.listId);
       console.log(newListId);
     });

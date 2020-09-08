@@ -27,8 +27,9 @@ const getAll = (listId) => {
     return request.then(response => response.data)
   }
   
+  const newListUrl = 'https://raccoon-shopping-server.herokuapp.com/api/lists/new-list'
 
-  const newListUrl = 'http://localhost:3001/api/lists/new-list'
+  // const newListUrl = 'http://localhost:3001/api/lists/new-list'
 
   const createList = () => {
     const request = axios.post(newListUrl)
