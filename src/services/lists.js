@@ -27,6 +27,14 @@ const getAll = (listId) => {
     return request.then(response => response.data)
   }
   
+
+  const newListUrl = 'http://localhost:3001/api/lists/new-list'
+
+  const createList = () => {
+    const request = axios.post(newListUrl)
+    return request.then(response => response.data)
+  }
+
   const update = (id, newObject) => {
     const request = axios.put(`${baseUrl}/${id}`, newObject)
     return request.then(response => response.data)
@@ -43,6 +51,7 @@ const getAll = (listId) => {
 export default { 
   getAll: getAll, 
   create: create,
+  createList: createList,
   update: update,
   remove: remove 
 }

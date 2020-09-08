@@ -3,7 +3,7 @@ import React from "react";
 const ShareList = ({ listId, setColor }) => {
     const handleShareList = () => {
       let copyListURL =
-        "http://shopping-assistent.herokuapp.com/?listId:" + listId;
+        "https://raccoon-shopping.herokuapp.com/api/lists/:" + listId;
   
       
       // create empty textarea for copy&pasting  
@@ -41,7 +41,7 @@ const ShareList = ({ listId, setColor }) => {
         <div className="share-button" style={{ textAlign: "center" }}>
           {/* <div> List-ID: {listId}</div> */}
   
-          {/* <a href={"http://shopping-assistent.herokuapp.com/?listId:" + listId}>
+          {/* <a href={"https://raccoon-shopping.herokuapp.com/api/lists/:" + listId}>
             {"#" + listId}
           </a> */}
         </div>

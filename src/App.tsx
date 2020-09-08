@@ -64,12 +64,9 @@ const App = () => {
 
       const newItems = [...items, newItem];
 
-
       setItems(newItems);
 
-
     });
-
 
   };
 
@@ -92,31 +89,39 @@ const App = () => {
 
 
   const handleNewList = () => {
-    let currentArrLengthOnServer = null;
-    axios
-      .get("https://shopping-assistant-json-server.herokuapp.com/lists/")
-      .then((response) => {
-        currentArrLengthOnServer = response.data.length;
-        console.log(currentArrLengthOnServer);
-        listId = currentArrLengthOnServer + 1;
-        console.log(listId);
-        setNewListId(listId);
-        console.log(newListId);
-      });
-
-    let newItems = [
-      {
-        text: "",
-        amount: 0,
-        isCompleted: false,
-      },
-    ];
-
-    axios.post("https://shopping-assistant-json-server.herokuapp.com/lists/", {
-      listId,
-      newItems,
+    listService.createList().then(res => {
+      console.log(res.listId)
+      setNewListId(res.listId);
+      console.log(newListId);
     });
-  };
+  }
+
+  // const handleNewList = () => {
+  //   let currentArrLengthOnServer = null;
+  //   axios
+  //     .get("https://shopping-assistant-json-server.herokuapp.com/lists/")
+  //     .then((response) => {
+  //       currentArrLengthOnServer = response.data.length;
+  //       console.log(currentArrLengthOnServer);
+  //       listId = currentArrLengthOnServer + 1;
+  //       console.log(listId);
+  //       setNewListId(listId);
+  //       console.log(newListId);
+  //     });
+
+  //   let newItems = [
+  //     {
+  //       text: "",
+  //       amount: 0,
+  //       isCompleted: false,
+  //     },
+  //   ];
+
+  //   axios.post("https://shopping-assistant-json-server.herokuapp.com/lists/", {
+  //     listId,
+  //     newItems,
+  //   });
+  // };
 
   const handleDarkMode = () => {
     if (darkMode.darkModeOn === false) {
