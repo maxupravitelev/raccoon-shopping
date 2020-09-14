@@ -36,12 +36,14 @@ const getAll = (listId) => {
     return request.then(response => response.data)
   }
 
+  const itemUrl = 'https://raccoon-shopping-server.herokuapp.com/api/items'
+  // const itemUrl = 'http://localhost:3001/api/items'
+
   const update = (id, newObject) => {
-    const request = axios.put(`${baseUrl}/${id}`, newObject)
+    const request = axios.put(`${itemUrl}/${id}`, newObject)
     return request.then(response => response.data)
   }
 
-  const itemUrl = 'https://raccoon-shopping-server.herokuapp.com/api/items'
 
   const remove = (id) => {
     const request = axios.delete(`${itemUrl}/${id}`)

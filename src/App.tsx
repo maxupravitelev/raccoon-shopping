@@ -74,7 +74,7 @@ const App = () => {
     const newItems: any = [...items];
     newItems[index].isCompleted = !newItems[index].isCompleted;
 
-    listService.update(listId, { newItems });
+    listService.update(newItems[index]["_id"], { isCompleted: newItems[index].isCompleted});
 
     setItems(newItems);
   };
