@@ -5,7 +5,7 @@ import Item from "./components/Item";
 import AddItemForm from "./components/AddItemForm";
 import ShareList from "./components/ShareList";
 import ShowNewListID from "./components/ShowNewListID";
-import axios from "axios";
+// import axios from "axios";
 import logoLight from "./img/logo.png";
 import logoInverse from "./img/logoInverse.png";
 import listService from "./services/lists";
@@ -47,6 +47,11 @@ const App = () => {
 
   const addItem = (text, amount) => {
     
+    // default value
+    if (!amount) {
+      amount = 1
+    }
+
     const newItem = {
       text, 
       amount,

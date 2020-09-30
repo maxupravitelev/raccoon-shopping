@@ -2,7 +2,10 @@ import React from "react";
 
 
 const Item = ({ item, index, completeItem, removeItem, setColor }) => {
-    return (
+  
+  const space: string = " x "
+  
+  return (
       <section
         className="item"
 
@@ -10,7 +13,7 @@ const Item = ({ item, index, completeItem, removeItem, setColor }) => {
         style={{ textDecoration: item.isCompleted ? "line-through" : "" }}
       >
         {item.amount}
-        x
+        {space}
         {item.text}
   
         <section>
