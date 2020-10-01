@@ -94,6 +94,7 @@ const AddItemForm = ({ addItem, setColor }) => {
       />
       <button
         id="addButton"
+        className="addButton"
         style={setColor.buttonNavStyle}
         aria-label="Add"
       >
