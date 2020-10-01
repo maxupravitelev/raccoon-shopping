@@ -11,7 +11,13 @@ import logoInverse from "./img/logoInverse.png";
 import listService from "./services/lists";
 
 const App = () => {
-  const [items, setItems] = useState([{ text: "...loading..." }]);
+  
+  const itemsFirstLoad = { 
+    text: "...loading...",
+    // amount: "",
+   "_id": "" }
+
+  const [items, setItems] = useState([itemsFirstLoad]);
   const [newListId, setNewListId] = useState(0);
   const [darkMode, setDarkMode] = useState({
     darkModeOn: false,
@@ -23,12 +29,12 @@ const App = () => {
   });
 
   // work around until react routes are implemented
-  let listId = null;
+  let listId: number = 0;
 
   const queryString = window.location.search;
   if (queryString !== "") {
     if (queryString.indexOf(":") !== -1) {
-      listId = queryString.split(":")[1];
+      listId = parseInt(queryString.split(":")[1]);
     }
   } else {
     listId = 0;
@@ -45,7 +51,7 @@ const App = () => {
   }, []);
 
 
-  const addItem = (text, amount) => {
+  const addItem = (text: string, amount: number) => {
     
     // default value
     if (!amount) {
@@ -75,7 +81,7 @@ const App = () => {
 
   };
 
-  const completeItem = (index) => {
+  const completeItem = (index: number) => {
     const newItems: any = [...items];
     newItems[index].isCompleted = !newItems[index].isCompleted;
 
@@ -84,7 +90,7 @@ const App = () => {
     setItems(newItems);
   };
 
-  const removeItem = (index) => {
+  const removeItem = (index: number) => {
     const newItems = [...items];
     newItems.splice(index, 1);
 
@@ -156,7 +162,7 @@ const App = () => {
 
 
   // changing body background color
-  const changeBackground = (color) => {
+  const changeBackground = (color:string) => {
     document.body.style.background = color;
   }
 
