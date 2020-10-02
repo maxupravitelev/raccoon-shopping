@@ -18,14 +18,18 @@ const Item = ({ item, index, completeItem, removeItem, setColor }) => {
   
         <section>
           <button 
-          className="editButtons" style={setColor}
+          className="editButtons" 
+          id="completeButton"
+          style={setColor}
           onClick={() => completeItem(index)}
           aria-label='click to mark item as bought'
   
           >✓</button>
   
           <button 
-          className="editButtons" style={setColor}
+          className="editButtons" 
+          id="removeButton"
+          style={setColor}
           onClick={() => removeItem(index)}
           aria-label='remove item from list'
   

@@ -12,7 +12,8 @@ describe("raccoon app", function () {
   // })
 
   beforeEach(function () {
-    cy.visit("http://localhost:3000");
+    cy.request('POST', 'http://localhost:3001/api/testing/reset')
+    cy.visit("http://localhost:3000/?listId:10");
   });
 
   it("front page can be opened", function () {
@@ -26,6 +27,12 @@ describe("raccoon app", function () {
       cy.get("#addButton").click();
       cy.contains("Cookies");
     });
+
+    // it("item can deleted", function () {
+    //   cy.get("#removeButton").click();
+    //   cy.contains("Cookies");
+    // });
+
   });
 
   // describe('when logged in', function() {
