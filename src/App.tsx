@@ -211,6 +211,7 @@ const App = () => {
       <div id="share-button">
         <button
           onClick={handleNewList}
+          id="createNewList"
           style={buttonNavStyle}
           //   disabled={true}
           aria-label="New List"
