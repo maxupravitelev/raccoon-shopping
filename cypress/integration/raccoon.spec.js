@@ -1,3 +1,8 @@
+const testingUrl = "http://localhost:3000/?listId:10"
+
+const testingResetUrl = 'http://raccoon-shopping-server.herokuapp.com/api/testing/reset'
+// const testingResetUrlLocal = 'http://localhost:3001/api/testing/reset
+
 describe("raccoon app", function () {
   // beforeEach(function() {
   //   cy.request('POST', 'http://localhost:3001/api/testing/reset')
@@ -12,8 +17,8 @@ describe("raccoon app", function () {
   // })
 
   beforeEach(function () {
-    cy.request('POST', 'http://localhost:3001/api/testing/reset')
-    cy.visit("http://localhost:3000/?listId:10");
+    cy.request('POST', testingResetUrl)
+    cy.visit(testingUrl);
   });
 
   it("front page can be opened", function () {
@@ -22,16 +27,16 @@ describe("raccoon app", function () {
 
   describe("item handling", function () {
     it("item can be added", function () {
-      cy.get("input:first").type("Cookies");
-      cy.get("input:last").type(1);
+      cy.get("#text").type("Cookies");
+      cy.get("#amount").type(1);
       cy.get("#addButton").click();
       cy.contains("Cookies");
     });
 
-    // it("item can deleted", function () {
-    //   cy.get("#removeButton").click();
-    //   cy.contains("Cookies");
-    // });
+    it("item can deleted", function () {
+      cy.get("#removeButton").click();
+      cy.get('.app').should('not.have.value', 'Cookies')
+    });
 
   });
 

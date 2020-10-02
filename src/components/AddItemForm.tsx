@@ -72,6 +72,7 @@ const AddItemForm = ({ addItem, setColor }) => {
       <input
         type="text"
         className="input"
+        id="text"
         style={setColor.buttonEditItemsStyle}
         aria-label={labelText}
         aria-required="true"
@@ -84,6 +85,7 @@ const AddItemForm = ({ addItem, setColor }) => {
       <input
         type="number"
         aria-label="Add Amount"
+        id="amount"
         aria-required="true"
         style={setColor.buttonEditItemsStyle}
         placeholder="Amount"
