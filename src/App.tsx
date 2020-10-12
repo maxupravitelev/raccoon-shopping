@@ -31,16 +31,16 @@ const App = () => {
   // open specific lists
   let listId: number = 0;
 
-  let urlParams: any = new URLSearchParams(window.location.search);   
-  if (urlParams !== "") {
+  let queryString = window.location.search
 
-    // let urlParams: any = new URLSearchParams(window.location.search);   
+  if (queryString !== "") {
+    let urlParams: any = new URLSearchParams(queryString);   
+
     listId = urlParams.get("listId");
 
   } else {
     listId = 0;
   }
-
   // listId = '5f214b299c7c213e069f2a52'
 
   useEffect(() => {
