@@ -1,4 +1,4 @@
-const testingUrl = "http://localhost:3000/?listId:10"
+const testingUrl = "http://localhost:3000/?listId=10"
 
 const testingResetUrl = 'http://raccoon-shopping-server.herokuapp.com/api/testing/reset'
 // const testingResetUrl = 'http://localhost:3001/api/testing/reset

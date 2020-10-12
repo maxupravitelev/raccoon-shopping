@@ -28,14 +28,15 @@ const App = () => {
     logo: logoLight,
   });
 
-  // work around until react routes are implemented
+  // open specific lists
   let listId: number = 0;
 
-  const queryString = window.location.search;
-  if (queryString !== "") {
-    if (queryString.indexOf(":") !== -1) {
-      listId = parseInt(queryString.split(":")[1]);
-    }
+  let urlParams: any = new URLSearchParams(window.location.search);   
+  if (urlParams !== "") {
+
+    // let urlParams: any = new URLSearchParams(window.location.search);   
+    listId = urlParams.get("listId");
+
   } else {
     listId = 0;
   }
