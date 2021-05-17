@@ -6,7 +6,7 @@ Need assistance shopping? Send a raccoon!
 
 ## current stage
 
-The app is in prototype stage. A current demo is available at: https://raccoon-shopping.herokuapp.com/
+The app is in prototype stage.
 
 Frontend Stack: React
 
